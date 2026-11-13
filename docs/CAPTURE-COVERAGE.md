@@ -1,6 +1,6 @@
 # Feature coverage
 
-The gallery shows built behavior, driven through the real controls. Each fresh browser context uses only the included synthetic fixtures. The capture manifest records the exact source commit, browser version, clock, state assertions, OCR checks and image hashes.
+The gallery shows built behavior, driven through the real controls. Each fresh browser context uses only the included synthetic fixtures. The capture manifest records the browser version, clock, state assertions, OCR checks and image hashes. Its source commit and CI run refer to pre-publication history that is kept privately and do not resolve in this repository; see [capture provenance](VALIDATION.md#capture-provenance).
 
 | Feature | Shots | Behavioral tests | Capture verification |
 |---|---|---|---|

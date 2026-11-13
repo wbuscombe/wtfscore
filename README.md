@@ -54,13 +54,21 @@ node server.mjs
 
 Open the address printed by the server. There is no public hosted demo.
 
-CI runs the test suite with:
+Run the test suite with the same command CI uses:
 
 ```sh
 node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=120000 test/*.test.mjs
 ```
 
-[CI for the gallery source commit `50786a8`](https://github.com/wbuscombe/wtfscore/actions/runs/43344142841) passed all 263 tests and the secret scanner canary and history checks. Publication commits after that source commit change only documentation and images. See [validation details](docs/VALIDATION.md) for commit-labeled results and capture provenance.
+The suite has 269 tests. Six of them are publication hygiene checks that fail if a tracked file gains a local user path, a private IPv4 address, an email address, a planning label in a code comment or test title, or an em dash in Markdown. `node tools/publication-hygiene.mjs` runs the same scan on its own.
+
+The [CI workflow](https://github.com/wbuscombe/wtfscore/actions/workflows/ci.yml) runs the suite inside a bounded Linux sandbox and requires all 269 tests to pass with no failures, cancellations or skips. A separate job runs a checksum-pinned gitleaks scan of the full history, which must first detect a planted canary. See [validation details](docs/VALIDATION.md) for the limits and capture checks.
+
+## Gallery provenance
+
+The gallery images and their [manifest](docs/screenshots/manifest.json) were captured from pre-publication history that is kept privately. The manifest's source commit, CI run and source-file hash fields refer to that history and do not resolve in this repository. The 24 app files under `public/` that the manifest hashes differ from their captured versions only in comments and one unused string in a developer-only module; neither changes rendering.
+
+Changes outside those 24 files, such as tests, tools, CI configuration and documentation, are described in the [changelog](CHANGELOG.md). Each committed image matches the hash recorded for it in the manifest.
 
 ## Current scope
 
@@ -73,3 +81,7 @@ node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=120000 
 - WTFScore is not affiliated with any sports league. League and conference names are used descriptively.
 
 Each published image adds a 24 CSS pixel SIMULATED caption strip outside the app viewport. The app viewport pixels below it are unchanged. The manifest records both the raw and framed image hashes.
+
+## License
+
+MIT. Copyright (c) 2026 wbuscombe. See [LICENSE](LICENSE).

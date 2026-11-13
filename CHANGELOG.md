@@ -2,6 +2,25 @@
 
 All notable changes to this project are documented here. This file follows Keep a Changelog.
 
+## [Unreleased]
+
+## [0.1.1] - 2026-11-13
+
+### Added
+
+- Publication hygiene checks in `tools/publication-hygiene.mjs`, with six tests for local user paths, private IPv4 addresses, email addresses, planning labels in code comments and test titles, and em dashes in Markdown. The suite now has 269 tests.
+- A module table and tooling list in ARCHITECTURE.md, a license line in the README and this file's version links.
+
+### Changed
+
+- Code comments and test titles describe behavior instead of internal planning labels. Test assertions and app behavior are unchanged.
+- The CI test-count check expects 269 tests.
+- README, VALIDATION, SHOWCASE and CAPTURE-COVERAGE describe where the gallery was captured and link CI at the workflow level.
+
+### Removed
+
+- An unused local tool entry from `.gitignore`.
+
 ## [0.1.0] - 2026-11-12
 
 ### Added
@@ -14,3 +33,7 @@ All notable changes to this project are documented here. This file follows Keep 
 - TV foreground Situation, Leaders and Team stats panels.
 - Phone layouts with inline game details.
 - Reproducible Phantom documentation captures and bounded CI validation.
+
+[Unreleased]: https://github.com/wbuscombe/wtfscore/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/wbuscombe/wtfscore/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/wbuscombe/wtfscore/tree/v0.1.0

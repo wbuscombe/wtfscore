@@ -2,6 +2,8 @@
 
 All games, teams, players and statistics are simulated. The browser clock is fixed at Sunday, November 15, 2026, 3:50 PM Central. TV captures use 960 × 540 CSS pixels at 2×. Phone captures use 390 × 844 at 3×. These are headless Chromium layout proxies.
 
+These images were captured from pre-publication history that is kept privately; see [capture provenance](VALIDATION.md#capture-provenance).
+
 ## 1. NFL week board with a favorite team
 
 <img src="screenshots/01-tv-scoreboard.png" width="960" alt="NFL week board with a favorite team. Simulated fixture data.">
