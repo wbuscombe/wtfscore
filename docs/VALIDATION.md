@@ -1,6 +1,6 @@
 # Validation
 
-The [checkpoint CI run](https://github.com/wbuscombe/wtfscore/actions/runs/43344142841) passed all 263 behavioral tests with no failures, cancellations or skips. Its secret scanner detected the positive canary and then passed a clean repository-history scan.
+[CI for the gallery source commit `50786a8`](https://github.com/wbuscombe/wtfscore/actions/runs/43344142841) passed all 263 behavioral tests with no failures, cancellations or skips. [CI for the gallery promotion commit `de47b20`](https://github.com/wbuscombe/wtfscore/actions/runs/43345725191) passed the same complete suite. Both runs detected the secret scanner's positive canary and then passed a clean repository-history scan. Publication commits after `50786a8` change only documentation and images; the tested app and test files are unchanged.
 
 The test job uses Node 22.22.0, a 256 MiB Node heap, a 768 MiB kernel memory limit, zero swap, 64 tasks and a five-minute unit deadline. Files run serially. The capture job uses a separate bounded unit with 1.5 GiB memory, zero swap, 128 tasks and one CPU. It records the applied kernel limits before starting the app and verifies that the cgroup is empty afterward. Capture and verification processes have a 32 MiB file limit for renderer backing files; each published PNG is limited to 8 MiB and the complete artifact to 100 MiB.
 

@@ -32,7 +32,7 @@ On TV, the scorecard opens a foreground detail view. Left and Right step through
 
 ## Seven leagues, one board
 
-Basketball, baseball and hockey use sport-specific linescores and fixture-backed situations. College basketball includes tournament and round controls. These shared-card renderings are prototypes; their sport-specific designs are still being worked out.
+Basketball, baseball and hockey use sport-specific linescores and fixture-backed situations. College basketball includes tournament and round controls. These shared-card renderings are prototypes, not final designs.
 
 See the [16-state gallery](docs/SHOWCASE.md) and [feature coverage](docs/CAPTURE-COVERAGE.md).
 
@@ -44,19 +44,23 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) and [SECURITY-PRACTICES.md](SECURITY-PRAC
 
 ## Run and test
 
-Run in a bounded Linux CI job or on an approved server.
+Requires Node 22. No package installation is needed.
 
 ```sh
+git clone https://github.com/wbuscombe/wtfscore.git
+cd wtfscore
 node server.mjs
 ```
 
-Open the loopback address printed by the server on that host. Public hosting is not part of this checkpoint.
+Open the address printed by the server. There is no public hosted demo.
+
+CI runs the test suite with:
 
 ```sh
 node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=120000 test/*.test.mjs
 ```
 
-Use a bounded job with a 768 MiB memory limit, no swap and a 300-second deadline. [Validation details](docs/VALIDATION.md) identify the tested source and capture run. The [checkpoint CI run](https://github.com/wbuscombe/wtfscore/actions/runs/43344142841) passed all 263 tests and the secret scanner canary and history checks.
+[CI for the gallery source commit `50786a8`](https://github.com/wbuscombe/wtfscore/actions/runs/43344142841) passed all 263 tests and the secret scanner canary and history checks. Publication commits after that source commit change only documentation and images. See [validation details](docs/VALIDATION.md) for commit-labeled results and capture provenance.
 
 ## Current scope
 
