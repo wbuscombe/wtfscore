@@ -15,7 +15,7 @@ def normalize(text: str) -> str:
 
 
 def main() -> int:
-    from PIL import Image, ImageDraw
+    from PIL import Image, ImageDraw, ImageFont
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", default=".")
     parser.add_argument("--manifest", required=True)
@@ -24,6 +24,10 @@ def main() -> int:
     args = parser.parse_args()
     project = Path(args.project).resolve(strict=True)
     manifest = json.loads(Path(args.manifest).read_text())
+    frame_root = Path(args.output).parent / "framed"
+    raw_root = Path(args.output).parent / "raw"
+    frame_root.mkdir(parents=True, exist_ok=False)
+    raw_root.mkdir(parents=True, exist_ok=False)
     proofs = []
     thumbnails = []
     for capture in manifest["captures"]:
@@ -40,14 +44,34 @@ def main() -> int:
         unique = len(image.resize((40, 40)).getcolors(1601) or [])
         if unique < 6:
             raise RuntimeError("Blank frame: " + capture["id"])
-        ocr = subprocess.run(["tesseract", str(path), "stdout", "--psm", "11"], capture_output=True, text=True, timeout=20, check=True).stdout
+        # This label is outside the app viewport. The app's pixels remain
+        # intact, including dialogs that cover its own header label.
+        raw_sha = capture["sha256"]
+        band = 24 * ratio
+        framed = Image.new("RGB", (image.width, image.height + band), "#0b0e12")
+        framed.paste(image, (0, band))
+        try:
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 12 * ratio)
+        except OSError:
+            font = ImageFont.load_default(size=12 * ratio)
+        ImageDraw.Draw(framed).text((12 * ratio, 4 * ratio), "WTFScore | " + state["league"] + " | " + state["period"] + " | SIMULATED", fill="#dde2e8", font=font)
+        if framed.crop((0, band, framed.width, framed.height)).tobytes() != image.tobytes():
+            raise RuntimeError("App viewport pixels changed during framing")
+        framed_path = frame_root / path.name
+        with framed_path.open("xb") as handle:
+            framed.save(handle, format="PNG")
+        capture["raw_sha256"] = raw_sha
+        capture["sha256"] = hashlib.sha256(framed_path.read_bytes()).hexdigest()
+        capture["framing"] = {"caption_band_css_pixels": 24, "app_viewport_unchanged": True, "raw_pixel_size": list(image.size)}
+        image = framed
+        ocr = subprocess.run(["tesseract", str(framed_path), "stdout", "--psm", "11"], capture_output=True, text=True, timeout=20, check=True).stdout
         words = normalize(ocr)
         missing = [token for token in state["expected_ocr"] if normalize(token) not in words]
         if missing:
             raise RuntimeError("OCR did not confirm expected state: " + capture["id"] + ": " + ", ".join(missing))
         if re.search(r"\b(?:192\.168|10\.\d{1,3}|172\.(?:1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b|/(?:Users|Volumes)/", ocr):
             raise RuntimeError("Private-looking text in screenshot")
-        proof = {"id": capture["id"], "pixel_size": list(image.size), "bytes": path.stat().st_size, "nonblank": True, "ocr_expected": state["expected_ocr"], "ocr_confirmed": True, "ocr_text": ocr.strip()}
+        proof = {"id": capture["id"], "pixel_size": list(image.size), "bytes": framed_path.stat().st_size, "nonblank": True, "ocr_expected": state["expected_ocr"], "ocr_confirmed": True, "ocr_text": ocr.strip()}
         proofs.append(proof)
         capture["verification"] = proof
         image.thumbnail((580, 370))
@@ -57,6 +81,16 @@ def main() -> int:
         thumbnails.append(tile)
     if len(proofs) not in (1, 16):
         raise RuntimeError("Incomplete showcase")
+    # Preserve each full raw input before replacing generated outputs. These
+    # are job-owned assets; the pipeline never commits or pushes them itself.
+    for capture in manifest["captures"]:
+        path = project / capture["file"]
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != capture["raw_sha256"]:
+            raise RuntimeError("Raw capture changed before promotion")
+        with (raw_root / path.name).open("xb") as handle:
+            handle.write(raw)
+        path.write_bytes((frame_root / path.name).read_bytes())
     sheet = Image.new("RGB", (1200, ((len(thumbnails) + 1) // 2) * 420), "#0b0e12")
     for index, tile in enumerate(thumbnails):
         sheet.paste(tile, ((index % 2) * 600, (index // 2) * 420))

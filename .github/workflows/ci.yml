@@ -27,6 +27,15 @@ jobs:
           python-version: '3.12'
       - name: Run the complete suite in a bounded sandbox
         run: python3 tools/capture-showcase.py --bounded test --work "$RUNNER_TEMP/wtfscore-tests"
+      - name: Record applied kernel limits and teardown
+        run: |
+          python3 - <<'PYCODE'
+          import os,json
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'wtfscore-tests'
+          for name in ['unit-proof.json','bounded-result.json']:
+              print(json.dumps(json.loads((root/name).read_text()),sort_keys=True))
+          PYCODE
       - name: Require the complete passing suite
         run: |
           python3 - <<'PY'

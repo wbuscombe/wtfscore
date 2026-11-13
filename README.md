@@ -66,3 +66,5 @@ Use a bounded job with a 768 MiB memory limit, no swap and a 300-second deadline
 - The screenshots come from headless Chromium at documented TV and phone sizes. They are layout proxies, not physical device tests.
 - This checkpoint has not completed acceptance on a physical TV box or phone, in Safari or Brave, or with a screen reader.
 - WTFScore is not affiliated with any sports league. League and conference names are used descriptively.
+
+Each published image adds a 24 CSS pixel SIMULATED caption strip outside the app viewport. The app viewport pixels below it are unchanged. The manifest records both the raw and framed image hashes.

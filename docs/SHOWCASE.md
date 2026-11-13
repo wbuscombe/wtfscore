@@ -97,3 +97,5 @@ This frame shows nFL inline Situation at phone width.
 <img src="screenshots/16-phone-ncaaw.png" width="390" alt="NCAAW board at phone width. Simulated fixture data.">
 
 This frame shows nCAAW board at phone width.
+
+Each published image adds a 24 CSS pixel SIMULATED caption strip outside the app viewport. The app viewport pixels below it are unchanged. The manifest records both the raw and framed image hashes.

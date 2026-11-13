@@ -11,3 +11,5 @@ The [image manifest](screenshots/manifest.json) records the source commit, CI ru
 The [Phantom workflow](https://github.com/wbuscombe/wtfscore/actions/workflows/phantom.yml) posts a verified artifact on relevant source pushes, version tags and manual runs. It has no Git write permission. Gallery updates are reviewed and promoted from that artifact through a normal commit, preserving the previous images in Git history.
 
 This is simulated prototype validation. Physical TV boxes, phones, Safari, Brave and screen readers have not completed acceptance for this checkpoint.
+
+Each published image adds a 24 CSS pixel SIMULATED caption strip outside the app viewport. The app viewport pixels below it are unchanged. The manifest records both the raw and framed image hashes.

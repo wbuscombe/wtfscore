@@ -23,8 +23,6 @@ jobs:
     permissions:
       contents: read
     env:
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/phantom-runtime/browsers
-      PIP_CACHE_DIR: ${{ runner.temp }}/phantom-runtime/pip-cache
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
       MKL_NUM_THREADS: '1'
@@ -42,6 +40,9 @@ jobs:
         timeout-minutes: 5
         run: |
           mkdir -p "$RUNNER_TEMP/phantom-runtime"
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/phantom-runtime/browsers"
+          export PIP_CACHE_DIR="$RUNNER_TEMP/phantom-runtime/pip-cache"
+          printf 'PLAYWRIGHT_BROWSERS_PATH=%s\nPIP_CACHE_DIR=%s\n' "$PLAYWRIGHT_BROWSERS_PATH" "$PIP_CACHE_DIR" >> "$GITHUB_ENV"
           python3 -m venv "$RUNNER_TEMP/phantom-runtime/venv"
           curl --fail --silent --show-error --location --max-time 60 'https://files.pythonhosted.org/packages/d1/e8/a9ad5c2cd67301476202a6d42087d4be43f898bfe4b729b64ffd80de3e80/phantom_docs-0.4.0-py3-none-any.whl' --output "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl"
           printf '%s  %s\n' '8bd008c8f6c3372803fa0cf12d1680d015493b215bdf5ae014d8d90c5fe2a55f' "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl" | sha256sum --check -
@@ -65,6 +66,16 @@ jobs:
           if target.exists():
               (root/'previous-manifest.json').open('xb').write(target.read_bytes())
           target.write_bytes((root/'result/manifest.json').read_bytes())
+          PYCODE
+      - name: Record applied capture limits and teardown
+        run: |
+          python3 - <<'PYCODE'
+          import os,json
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])
+          for folder in ['wtfscore-hero','wtfscore-gallery','wtfscore-verify']:
+              for name in ['unit-proof.json','bounded-result.json']:
+                  print(json.dumps(json.loads((root/folder/name).read_text()),sort_keys=True))
           PYCODE
       - name: Require a small, complete artifact
         run: |
