@@ -1,0 +1,17 @@
+# Generated runtime state and local-only material
+.DS_Store
+._*
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/
+.showcase/
+.phantom/
+.phantom-state.json
+__pycache__/
+*.pyc
+*.log
+.dropboxignore
+# Review composites are CI artifacts, not gallery frames.
+docs/screenshots/contact-sheet.png

@@ -1,0 +1,81 @@
+name: Phantom showcase
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths:
+      - 'public/**'
+      - 'server.mjs'
+      - '.phantom.yml'
+      - 'tools/capture-showcase.py'
+      - 'tools/verify-showcase.py'
+      - '.github/workflows/phantom.yml'
+  workflow_dispatch:
+permissions: {}
+jobs:
+  captures:
+    if: github.repository_owner == 'wbuscombe'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: wtfscore-app-execution
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/phantom-runtime/browsers
+      PIP_CACHE_DIR: ${{ runner.temp }}/phantom-runtime/pip-cache
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22.22.0'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Install documentation tools in the disposable runner
+        timeout-minutes: 5
+        run: |
+          mkdir -p "$RUNNER_TEMP/phantom-runtime"
+          python3 -m venv "$RUNNER_TEMP/phantom-runtime/venv"
+          curl --fail --silent --show-error --location --max-time 60 'https://files.pythonhosted.org/packages/d1/e8/a9ad5c2cd67301476202a6d42087d4be43f898bfe4b729b64ffd80de3e80/phantom_docs-0.4.0-py3-none-any.whl' --output "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl"
+          printf '%s  %s\n' '8bd008c8f6c3372803fa0cf12d1680d015493b215bdf5ae014d8d90c5fe2a55f' "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl" | sha256sum --check -
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/pip" install --only-binary=:all: "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl"
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/python" -m playwright install --with-deps --only-shell chromium
+          sudo apt-get install -y tesseract-ocr
+      - name: Verify one hero before the full gallery
+        run: |
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/python" tools/capture-showcase.py --bounded capture --capture 01-tv-scoreboard --work "$RUNNER_TEMP/wtfscore-hero"
+      - name: Capture all sixteen states
+        run: |
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/python" tools/capture-showcase.py --bounded capture --work "$RUNNER_TEMP/wtfscore-gallery"
+      - name: Verify dimensions, state text and provenance
+        run: |
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/python" tools/capture-showcase.py --bounded verify --work "$RUNNER_TEMP/wtfscore-verify" --manifest "$RUNNER_TEMP/wtfscore-gallery/capture/manifest.json" --output "$RUNNER_TEMP/wtfscore-verify/result/manifest.json" --contact-sheet docs/screenshots/contact-sheet.png
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import os
+          root=Path(os.environ['RUNNER_TEMP'])/'wtfscore-verify'
+          target=Path('docs/screenshots/manifest.json')
+          if target.exists():
+              (root/'previous-manifest.json').open('xb').write(target.read_bytes())
+          target.write_bytes((root/'result/manifest.json').read_bytes())
+          PYCODE
+      - name: Require a small, complete artifact
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          files=list(Path('docs/screenshots').rglob('*'))
+          assert sum(p.stat().st_size for p in files if p.is_file()) < 100*1024*1024
+          PYCODE
+      - name: Publish the verified review artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: wtfscore-showcase-${{ github.sha }}-${{ github.run_attempt }}
+          path: docs/screenshots/
+          if-no-files-found: error

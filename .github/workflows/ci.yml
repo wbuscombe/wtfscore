@@ -1,0 +1,73 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions: {}
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    concurrency:
+      group: wtfscore-app-execution
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22.22.0'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Run the complete suite in a bounded sandbox
+        run: python3 tools/capture-showcase.py --bounded test --work "$RUNNER_TEMP/wtfscore-tests"
+      - name: Require the complete passing suite
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import os,re
+          text=(Path(os.environ['RUNNER_TEMP'])/'wtfscore-tests/stdout.log').read_text()
+          for label,value in [('tests',263),('pass',263),('fail',0),('cancelled',0),('skipped',0)]:
+              assert re.search(r'^# '+label+r' '+str(value)+r'$',text,re.M), label
+          PY
+  gitleaks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install a checksum-pinned scanner
+        run: |
+          mkdir "$RUNNER_TEMP/gitleaks-tool"
+          curl --fail --silent --show-error --location --max-time 60 'https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz' --output "$RUNNER_TEMP/gitleaks-tool/tool.tar.gz"
+          printf '%s  %s\n' '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb' "$RUNNER_TEMP/gitleaks-tool/tool.tar.gz" | sha256sum --check -
+          tar --extract --gzip --file "$RUNNER_TEMP/gitleaks-tool/tool.tar.gz" --directory "$RUNNER_TEMP/gitleaks-tool" gitleaks
+      - name: Prove the scanner detects its canary
+        shell: bash
+        run: |
+          mkdir "$RUNNER_TEMP/gitleaks-canary"
+          python3 - <<'PY'
+          from pathlib import Path
+          import os,hashlib
+          root=Path(os.environ['RUNNER_TEMP'])/'gitleaks-canary'
+          value='gh'+'p_'+hashlib.sha256(b'wtfscore-scanner-canary').hexdigest()[:36]
+          (root/'canary.txt').write_text('fixture = '+value+'\n')
+          PY
+          set +e
+          "$RUNNER_TEMP/gitleaks-tool/gitleaks" dir "$RUNNER_TEMP/gitleaks-canary" --no-banner --redact=100 --exit-code=42
+          result=$?
+          set -e
+          test "$result" -eq 42
+      - name: Scan the complete repository history
+        run: |
+          "$RUNNER_TEMP/gitleaks-tool/gitleaks" git . --no-banner --redact=100 --log-opts=--all
