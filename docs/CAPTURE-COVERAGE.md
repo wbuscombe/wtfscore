@@ -11,7 +11,7 @@ The gallery shows built behavior, driven through the real controls. Each fresh b
 | Football priority frames | 1, 6 | football-cues, render | Fixture-reachable red-zone and overtime cues; late-game thresholds remain covered by tests |
 | TV foreground detail carousel | 6–8 | popup, interaction | Selected game and Situation, Leaders, Team stats panel identity |
 | College tournament and round | 11 | menu, catalog, header-controls | NCAA tournament and First Round selected through the header |
-| Daily calendar | 10 | calendar, catalog | Selected date, month and named-round controls |
+| Daily calendar | 10 | calendar, catalog | Selected date and month exposed; date/round control and selected day verified |
 | Phone wrapping and inline details | 14–16 | fullrow, board-layout, interaction | Phone viewport, header visibility and inline expansion state |
 
-All 16 frames require the visible SIMULATED marker, expected OCR text, nonblank image checks and the documented pixel dimensions. Human visual review precedes publication. None of this establishes physical-device, Safari, Brave or screen-reader acceptance.
+All 16 frames require the visible SIMULATED marker, expected OCR text, nonblank image checks and the documented pixel dimensions. Visual review precedes publication. None of this establishes physical-device, Safari, Brave or screen-reader acceptance.

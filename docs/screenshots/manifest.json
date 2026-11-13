@@ -1,0 +1,1027 @@
+{
+  "schema": 1,
+  "source_commit": "50786a8ca90f90e049bdaf3aca8296882da8fb48",
+  "source_files": {
+    "public/app.mjs": "90b92d2d3ace43571b61729959d8ed04e64aeedbf61bb582ed7d1ee9799ee5d3",
+    "public/index.html": "56c558299b406aa32157352adf46579c6cea0503b5a7bc5ff7da90cdfaad6db1",
+    "public/lib/board-layout.mjs": "7bded3f61f4673325cdddc98ed8dd1c299a0aaba6f71c733c2d456c3876ec91b",
+    "public/lib/board.mjs": "d55526d3e2a73fc85655ff89063377caecf37bbe3cde2089d94fc3e1e43396f9",
+    "public/lib/calendar.mjs": "078d1f4a6d74d1bc94f62defe43775f95dbb6bf011d9995a4af826ee19a2bab9",
+    "public/lib/catalog.mjs": "8fe26bfb23d8caafef31f31281e0116474ae2d863da236582de563c33864ad52",
+    "public/lib/chrome.mjs": "bfcc0eaf9bb45bd53e9c9e0ccc4598d439dbcaed60b7f5a2ae23efeea65c3559",
+    "public/lib/diag.mjs": "0fb22857e2636eb3ce0e1c301baa882e3a6f8e898e0cd4f7de87b158f319e2fd",
+    "public/lib/favorites.mjs": "34a16e20e0988ab8389e4f3671459f07f2bc1cd485760cc13a78e9d564d348a8",
+    "public/lib/fixtures.mjs": "1f0c7806bea204cb4e4a1edd6ca737754f2be52173b8457c6515639b15a5f90d",
+    "public/lib/g1.mjs": "720e8a04625188ff2f4724cbe4f34267a27acb18ac461f70ce5f5f778fe5f38e",
+    "public/lib/header.mjs": "4db1883c1a14c4fc0b63784b8b5115f2034df02d01634d2ce6ab62375b976494",
+    "public/lib/layout.mjs": "4c93bbf267cbeea8b88531aaa45562ec289cf098d30da99b8d3c314d912ae442",
+    "public/lib/measure.mjs": "7ea74355c564362e2c8382c4d1341b66abc3c8757ea0be30560a49c3f3069ab9",
+    "public/lib/menu.mjs": "4074ba8a25f6fde0c98b03d86caabb574aa49a23575ea7132d4de8abf9122a30",
+    "public/lib/metrics.mjs": "aba00e7e9c6c2a0883c5b30328da9b6891ba9491cb935bb117e824ce183a847e",
+    "public/lib/model.mjs": "5d5cd536c5d96eeee84fbfe6edf0bb93dd8f8852ec055f237eb975b15cd58aac",
+    "public/lib/nav.mjs": "8d80f8d431c3a338b57b56be7dba643478faccffecad996ea7fdcff4300542fe",
+    "public/lib/popup.mjs": "cc2a5fe690c98b9d4f80813443d9daaeba736a5eaff9129dd818376ba5ce87ad",
+    "public/lib/presets.mjs": "3d44a72eaafe05ef6be18250ff2694cbfc7e58c385de3cf643d4dc35cbbe8ba5",
+    "public/lib/render.mjs": "fa74a7758137743f779b035247324948cc5dc8a37f6f645df285b4e417edf61b",
+    "public/lib/sizing.mjs": "07f8df94691ae9d302dbd9296704a66f98ae0a45b96560b8d977c0979b662d91",
+    "public/lib/sports.mjs": "e384146be3d7fe473c328519f69afcad812938e3e523d1368dfe680764b65e21",
+    "public/styles.css": "05a6f96c33c74f0f609067bfc5b7855432a34e2e244963d8cbd9764b06852400"
+  },
+  "clock": "2026-11-15T21:50:00Z",
+  "phantom": "0.4.0",
+  "capture_host": "GitHub Actions",
+  "browser": "headless Chromium",
+  "browser_version": "158.0.8127.18",
+  "ci_run": "https://github.com/wbuscombe/wtfscore/actions/runs/43344142838",
+  "captures": [
+    {
+      "id": "01-tv-scoreboard",
+      "file": "docs/screenshots/01-tv-scoreboard.png",
+      "sha256": "aee3bfb8cb414acd25683c4521e1ffc12b43593107699b5e07824bd3bb29fd64",
+      "alt": "NFL week board with a favorite team. Simulated fixture data.",
+      "state": {
+        "id": "01-tv-scoreboard",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [
+          "nfl-2026-g11-183"
+        ],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "645a8cbfe6b2d5fb61b419a11f70e60854abc1f0db56df97f8fc08e7d4465aea",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "01-tv-scoreboard",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 156919,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nAll conferences v\n\nALL divisions y\n\nSIMULATED\n\nMenu\n\nke\n\nQ2\n\n7:14 RZ\n\nDelayed\n\nQ4 9:03\n\nGridcast\n\nNorthlight\n\nWCW\n\nKFK\n\n8-1\n\n6-3\n\n17\n\nSMC\n\nDPS\n\n2-7\n\n4-5\n\n17\n\nOT\n\n6:12 OT\n\nWw\n\nQ2\n\n3:58\n\nke\n\nGridcast\n\nOT\n\nArcline\n\n, QFH\n\n5 CCQ\n\n24\n\n5-4\n\nFHT\n\nRMS\n\n5-4\n\n14\n\n24\n\n6-3\n\n2:05 Missing data\n\nWw\n\n1:12 TD\n\nke\n\nnN\n\nQi\n\nQi\n\nNetwork TBA\n\nNorthlight\n\nYWK\n\nCPL\n\n|\n\n5-4\n\n6-3\n\nMDP\n\n_ ZHG\n\n4-5\n\n5-4"
+      }
+    },
+    {
+      "id": "02-league-picker",
+      "file": "docs/screenshots/02-league-picker.png",
+      "sha256": "c106a1dae7c6b462612c863261e019506a62166bf3ba70977d97264a1fa53e23",
+      "alt": "League choices grouped by sport. Simulated fixture data.",
+      "state": {
+        "id": "02-league-picker",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL\nFootball\nNFL\nNCAAF\nBasketball\nNBA\nNCAAB (men)\nNCAAW (women)\nBaseball\nMLB\nHockey\nNHL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "Football",
+          "Basketball",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "6151f4cb9de3eda330756040e80df5c122418bc5aabc69b8975cb1fa9287ee99",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "02-league-picker",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 144708,
+        "nonblank": true,
+        "ocr_expected": [
+          "Football",
+          "Basketball",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nAll conferences v\n\nALL divisions y\n\nSIMULATED\n\nMenu\n\nFootball\n\nWw\n\nke\n\nOT\n\n6:12 OT\n\nGridcast\n\nOT\n\nNFL\n\n17\n\n|-ose\n\n24\n\nNCAAF\n\nFHT\n\n14\n\n17\n\n5-4\n\n24\n\nBasketball\n\nNBA\n\nWw\n\nQ2\n\n7:14 RZ\n\nke\n\nGridcast\n\n_ WCW\n\nNCAAB (men)\n\n8-1\n\nSMC\n\nNCAAW (women)\n\n2=7/\n\nBaseball\n\nWw\n\n1:12 TD\n\nke\n\nMLB\n\nQi\n\nNorthlight\n\nHockey\n\nCPL\n\n6-3\n\nMDP\n\nqui\n\n4-5\n\n5-4"
+      }
+    },
+    {
+      "id": "03-week-picker",
+      "file": "docs/screenshots/03-week-picker.png",
+      "sha256": "457eff497d09c1ea7ed73899102c68e15bff54753b33892b6fae845d76036928",
+      "alt": "NFL regular weeks and postseason rounds. Simulated fixture data.",
+      "state": {
+        "id": "03-week-picker",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11\n2026 demo season \u00b7 Regular season\nWeek 10\nWeek 11\nWeek 12\n2026 demo season \u00b7 Postseason\nWild Card round\nDivisional round\nConference championships\nChampionship game\n2025 demo season \u00b7 Regular season\nWeek 10\nWeek 11\nWeek 12\n2025 demo season \u00b7 Postseason\nWild Card round\nDivisional round\nConference championships\nChampionship game",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "Week",
+          "Postseason",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "53cc1648f685da12494cfefabc7034171fe76f56337f99aae6f44cffe7c92b43",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "03-week-picker",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 193089,
+        "nonblank": true,
+        "ocr_expected": [
+          "Week",
+          "Postseason",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nAll conferences v\n\nALL divisions\n\nv\n\nSIMULATED\n\nMenu\n\nVACVA0)\n\ndemo season\n\nRegular season\n\nke\n\nDelayed\n\nOT\n\n6:12 OT\n\nNorthligh\n\nGridcast\n\nOT\n\nWeek\n\n10\n\nKFK\n\n6-3\n\n|-ose\n\n24\n\nWeek\n\n11\n\nDPS\n\nFHT\n\n14\n\n4-5\n\n5-4\n\n24\n\nWeek\n\n12\n\n7:14 RZ\n\nke\n\nQ2 - 3:5\n\nVACVA0)\n\ndemo season\n\nPostseason\n\nQ2\n\nArcline\n\nGridcast\n\n, QFH\n\nWild\n\nCard round\n\n_ WCW\n\n|\n\n5-4\n\n8-1\n\nRMS\n\nDivisional round\n\nSMC\n\n6-3\n\n2=7/\n\nConference championships\n\nQi - 2:0\n\nQi\n\n1:12 TD\n\nke\n\nNetwork 1\n\nChampionship game\n\nNorthlight\n\nYWK\n\n5-4\n\n2025 demo season\n\nCPL\n\n6-3\n\n|\n\nRegular season\n\nMDP\n\n_ ZHG\n\nU\n\nVv\n\n4-5\n\n5-4"
+      }
+    },
+    {
+      "id": "04-nfl-division",
+      "file": "docs/screenshots/04-nfl-division.png",
+      "sha256": "e496f0a68cdc7b07649ee490922d2e43799951522935419e04a2abfc4806b6a4",
+      "alt": "NFL filtered to AFC North. Simulated fixture data.",
+      "state": {
+        "id": "04-nfl-division",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAFC",
+          "Division\nAFC North"
+        ],
+        "card_count": 4,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NFL",
+          "AFC",
+          "North",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "a83e34f119708e8b36e396f0cbfa1206a64245394d7559392df10e6f4e90358d",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "04-nfl-division",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 107782,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "AFC",
+          "North",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nAFC\n\nv\n\nAFC North v\n\nSIMULATED\n\nMenu\n\n*\n\nOT\n\n6:12 OT\n\nSun 7:20 PM\n\nGridcast\n\nOT\n\nT\n\nNorthlight\n\n7\n\nEMB\n\n[eee\n\n0 24\n\n8-1\n\nFHT\n\n14\n\nBRO\n\n5-4\n\n30 24\n\n5-4\n\nMon 7:15 PM\n\nWw\n\nFinal/0T\n\nThu\n\nLumen5S\n\nGridcast\n\nOT\n\nT\n\nGLD\n\nHME\n\n7\n\n3 27\n\n|\n\n3-6\n\n6-4\n\nSBS\n\nNGR\n\n10\n\n0 24\n\n|\n\n6-3\n\n|\n\n4-6"
+      }
+    },
+    {
+      "id": "05-favorites-override",
+      "file": "docs/screenshots/05-favorites-override.png",
+      "sha256": "dad3213c5dc945d55b9a5cd1e965764e529ab725900732fc432be353abdd0286",
+      "alt": "A favorite team and an individual game favorite. Simulated fixture data.",
+      "state": {
+        "id": "05-favorites-override",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [
+          "nfl-2026-g11-149",
+          "nfl-2026-g11-183"
+        ],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "cdad98a2cb96b0f7a249561865441d97c39f683120af01b6553c4cd7162ceeca",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "05-favorites-override",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 156875,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nALL\n\nconferences y\n\nALL divisions y\n\nSIMULATED\n\nMenu\n\nOT\n\n6:12 OT\n\nQ2\n\n7:14 RZ\n\nGridcast\n\n4 OT\n\nGridcast\n\n2 3 4\n\n_ WCW\n\n[eee\n\n24\n\n8-1\n\nFHT\n\n14\n\nSMC\n\n5-4\n\n24\n\n2=7/\n\nDelayed - Q4 9:03\n\nQ2\n\n3:58\n\nke\n\nArcline\n\n3\u00b044\n\nNorthlight\n\nKFK\n\n, QFH\n\n6-3\n\n17\n\n5-4\n\nDPS\n\nRMS\n\n4-5\n\n17\n\n6-3\n\n2:05 Missing data\n\nWw\n\n1:12 TD\n\nke\n\nnN\n\nQi\n\nQi\n\nNetwork TBA\n\nNorthlight\n\n2 3 4\n\nYWK\n\nCPL\n\n|\n\n5-4\n\n6-3\n\nMDP\n\n_ ZHG\n\n4-5\n\n5-4"
+      }
+    },
+    {
+      "id": "06-tv-situation",
+      "file": "docs/screenshots/06-tv-situation.png",
+      "sha256": "0e9e6a8d133309c56e049dc4576e5a633cb5019c9fae127e59c2ec024109c6db",
+      "alt": "TV foreground Situation. Simulated fixture data.",
+      "state": {
+        "id": "06-tv-situation",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": false,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": "Q2 \u00b7 7:14\nRZ\nGridcast\n1\n2\n3\n4\nT\n\u25b8\nWCW\n8-1\n7\n0\n7\nSMC\n2-7\n3\n0\n3\n\u25c0\nSituation \u00b7 1 of 3\n\u25b6\n\u25b6\n1st & Goal \u00b7 SMC 8 \u00b7 WCW ball \u2192\nDrive \u00b7 WCW \u00b7 3 plays, 14 yards\nStarted at the SMC 22 \u00b7 ball on the SMC 8 \u00b7 going \u2192 toward the SMC end zone\nR. Castellanos up the middle for 12 yards to the SMC 8.\nTimeouts WCW \u25cf\u25cf\u25cf \u00b7 SMC \u25cf\u25cf\u25cf\n\nBack to close \u00b7 Left or Right for more\n\nSituation, 1 of 3",
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "Situation",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "672d2d3267459e561a82d7617c3cad5ebbace6a1396a6678939e99d558b738ed",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "06-tv-situation",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 113333,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "Situation",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nQ2\n\n7:14 RZ\n\nGridcast\n\n12 3 4\n\n_ WCW\n\n7 0\n\n8-1\n\nSMC\n\n3 \u00a9\n\n2=7\n\n<\n\nSituation\n\n1 of 3\n\n\u2014\n\nist & Goal\n\nSMC 8\n\nwCW ball \u2014\n\nDrive\n\nwcw\n\n3 plays, 14 yards\n\nStarted at the SMC 22\n\nball on the SMC 8\n\ngoing = toward the SMC end zone\n\nR. Castellanos up the middle for 12 yards to the SMC 8.\n\nTimeouts WCW eee\n\nSMC eco\n\nBack to close\n\nLeft or Right for more"
+      }
+    },
+    {
+      "id": "07-tv-leaders",
+      "file": "docs/screenshots/07-tv-leaders.png",
+      "sha256": "65107b9908828a736c18547a48291b3b80532829ea0f006ba791c962c592c202",
+      "alt": "TV foreground Leaders. Simulated fixture data.",
+      "state": {
+        "id": "07-tv-leaders",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": false,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": "Q2 \u00b7 7:14\nRZ\nGridcast\n1\n2\n3\n4\nT\n\u25b8\nWCW\n8-1\n7\n0\n7\nSMC\n2-7\n3\n0\n3\n\u25c0\nLeaders \u00b7 2 of 3\n\u25b6\nPASS\nE. Marchetti\nWCW \u00b7 118 yds \u00b7 10/14, 1 TD\nRUSH\nR. Castellanos\nWCW \u00b7 61 yds \u00b7 9 car\nREC\nY. Achterberg\nSMC \u00b7 47 yds \u00b7 4 rec\n\nBack to close \u00b7 Left or Right for more\n\nLeaders, 2 of 3",
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "Leaders",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "d94efeb1fe3b5a42bb0f2173218069fc92755abeee156be7d708de5503b73cfa",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "07-tv-leaders",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 92355,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "Leaders",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\n7:14 RZ\n\nQ2\n\nGridcast\n\n12 3 4\n\n_ WCW\n\n7 0\n\n8-1\n\nSMC\n\n3 \u00a9\n\n2=7\n\n<\n\nLeaders\n\n2 of 3\n\nPASS\n\nE. Marchetti\n\nWCW\n\n118 yds\n\n10/14, 1 TD\n\nRUSH\n\nR. Castellanos\n\nWCW\n\n61 yds\n\n9 car\n\nREC\n\nY. Achterberg\n\nSMC\n\n4 rec\n\n47 yds\n\nBack to close\n\nLeft or Right for more"
+      }
+    },
+    {
+      "id": "08-tv-team-stats",
+      "file": "docs/screenshots/08-tv-team-stats.png",
+      "sha256": "4e8bf49f2025671c105436028addf53d83127ec188f5c819d32f8669efdc26f7",
+      "alt": "TV foreground Team stats. Simulated fixture data.",
+      "state": {
+        "id": "08-tv-team-stats",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": false,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": "Q2 \u00b7 7:14\nRZ\nGridcast\n1\n2\n3\n4\nT\n\u25b8\nWCW\n8-1\n7\n0\n7\nSMC\n2-7\n3\n0\n3\n\u25c0\nTeam stats \u00b7 3 of 3\n\u25b6\nTeam stats, WCW at SMC\nTeam\tWCW\tSMC\nFirst downs\t8\t7\nTotal yards\t122\t118\nPassing yards\t91\t73\nRushing yards\t31\t45\nTurnovers\t1\t1\nPenalties\t2-10\t2-18\n\nInvented for this demo, like every score here. Not live statistics.\n\nBack to close \u00b7 Left or Right for more\n\nTeam stats, 3 of 3",
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "Team",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "c63334f42582206c4395de92cb912e3a744a14c4e9e8bdbe6c64f92277ef7bcf",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "08-tv-team-stats",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 98748,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "Team",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nQ2\n\n7:14 RZ\n\nGridcast\n\n12 3 4\n\n_ WCW\n\n7 0\n\n8-1\n\nSMC\n\n3 \u00a9\n\n2=7\n\n<\n\nTeam stats\n\n3 of 3\n\nTeam\n\nwcw\n\nSMC\n\nFirst downs\n\n8\n\n122\n\n118\n\nTotal yards\n\nPassing yards\n\n91\n\n73\n\nRushing yards\n\n31\n\n45\n\nTurnovers\n\nPenalties\n\n2-10\n\n2-18\n\nBack to close\n\nLeft or Right for more"
+      }
+    },
+    {
+      "id": "09-ncaaf-ranked",
+      "file": "docs/screenshots/09-ncaaf-ranked.png",
+      "sha256": "f854213521df476bf0f63738b9b393d5c6663ba706a6debf6419c791670fde06",
+      "alt": "NCAAF FBS Top 25 in the Lakeshore Conference. Simulated fixture data.",
+      "state": {
+        "id": "09-ncaaf-ranked",
+        "league": "NCAAF",
+        "period": "Week 12",
+        "filters": [
+          "League\nNCAAF",
+          "Week or round\nWeek 12",
+          "Subdivision\nFBS",
+          "Conference\nLakeshore Conference",
+          "Ranking\nTop 25"
+        ],
+        "card_count": 5,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NCAAF",
+          "FBS",
+          "Top",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "60328233bf9e5184fb4d3ce0e7393fbcbeccc29d45ba940cf726a5022531e467",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "09-ncaaf-ranked",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 149269,
+        "nonblank": true,
+        "ocr_expected": [
+          "NCAAF",
+          "FBS",
+          "Top",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NCAAF | Week 12 | SIMULATED\n\nNCAAF v\n\nWeek 12 \u00a5v\n\nFBS v\n\nLakeshore Conference vy\n\nSIMULATED\n\nMenu\n\nTop 25 \u00a5\n\nWw\n\nA\n\nQ2\n\n9:05\n\nSat 6:30 PM\n\nVarsity 3\n\nVarsity 3\n\n_ ASH\n\nDEE\n\n#11\n\n6-4\n\n14\n\n#7\n\nB=8)\n\nRAV\n\nBRA\n\n4-6\n\n6\n\n#12\n\n1-3\n\n|\n\nFinal\n\nThu\n\nWw\n\nA\n\nFinal\n\nSat\n\nArcline\n\nCampus North\n\nUMB\n\nDAW\n\n14\n\n10\n\n10\n\n34\n\n|\n\n#2\n\n9-1\n\n#4\n\n3-7\n\nJUN\n\n24\n\nFAL\n\n7\n\n24\n\n|\n\n#5\n\n4-6\n\n2-8\n\nFinal/O0T\n\nSat\n\nWw\n\n2 3\n\n4\n\nOT\n\nT\n\nVarsity 3\n\nPEB\n\n#9\n\nB28)\n\n14 10\n\n(0)\n\n30\n\n|\n\nLAK\n\n10 7\n\n7\n\n0 27\n\n|\n\n#1\n\n8-2"
+      }
+    },
+    {
+      "id": "10-nba-calendar",
+      "file": "docs/screenshots/10-nba-calendar.png",
+      "sha256": "b28e8f201d9bc07f797e43946c39a8a71c73d63397cb5c09aba79b023f166ca9",
+      "alt": "NBA calendar with date and round controls. Simulated fixture data.",
+      "state": {
+        "id": "10-nba-calendar",
+        "calendar": {
+          "selected_date": "2026-11-15",
+          "month": "November 2026",
+          "selected_day_exposed": true,
+          "month_exposed": true,
+          "day_bounds": {
+            "x": 140.4375,
+            "y": 462.578125,
+            "width": 54.84375,
+            "height": 44
+          },
+          "month_bounds": {
+            "x": 270.03125,
+            "y": 313.984375,
+            "width": 124.828125,
+            "height": 20.796875
+          },
+          "panel_bounds": {
+            "x": 132.4375,
+            "y": 75,
+            "width": 400,
+            "height": 438
+          },
+          "panel_scroll_top": 197,
+          "footer_exposed": false
+        },
+        "league": "NBA",
+        "period": "Sun Nov 15",
+        "filters": [
+          "League\nNBA",
+          "Date or round\nSun Nov 15\nSeason\n2026\u201327 demo season\n2025\u201326 demo season\nRegular season\nRegular season\nRounds\nPlay-in tournament\nFirst round\nConference semifinals\nConference finals\nFinals\n\u25c0\nNovember 2026\n\u25b6\nSu\tMo\tTu\tWe\tTh\tFr\tSa\n\n1\n\t\n2\n\t\n3\n\t\n4\n\t\n5\n\t\n6\n\t\n7\n\n\n8\n\t\n9\n\t\n10\n\t\n11\n\t\n12\n\t\n13\n\t\n14\n\u2022\n\n\n15\n\u2022\n\t\n16\n\u2022\n\t\n17\n\t\n18\n\t\n19\n\t\n20\n\t\n21\n\n\n22\n\t\n23\n\t\n24\n\t\n25\n\t\n26\n\t\n27\n\t\n28\n\n\n29\n\t\n30\n\t\n1\n\t\n2\n\t\n3\n\t\n4\n\t\n5\n\n\n6\n\t\n7\n\t\n8\n\t\n9\n\t\n10\n\t\n11\n\t\n12\nToday\nClose calendar\n\n\u2022 marks a day with games. Arrow keys move by day and week, Page Up and Page Down by month, Escape or Back closes.",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 9,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NBA",
+          "November",
+          "15",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "c3bfbb6ef726be86ce8872055357a0d74bb31ea3e27678c40084063f322aa5a9",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "10-nba-calendar",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 177607,
+        "nonblank": true,
+        "ocr_expected": [
+          "NBA",
+          "November",
+          "15",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NBA | Sun Nov 15 | SIMULATED\n\nNBA vy\n\nSun Nov 15 \u00a5\n\nALl conferences v\n\nAll divisions y\u00a5\n\nSIMULATED\n\nMenu\n\nRegular season\n\nFinal\n\niL\n\nSun\n\nArcline\n\n\u2018ine\n\n12 3 4\n\nRounds\n\nSAN\n\nOR\n\n26 28 32 26\n\n|\n\n4-8\n\n112\n\nPlay-in tournament\n\nFirst round\n\nPIN\n\nID\n\n26 31 34 22\n\n|\n\nB=7/\n\n113\n\nConference semifinals\n\nConference finals\n\nQ4 - 0:4\n\n1:35\n\nFinals\n\n12 3 4\n\nNorthligh\n\nhlight\n\nIVY\n\nAL\n\n78)\n\nNovember 2026\n\n32 25 22\n\n79\n\nBLA\n\nID\n\n9-3\n\nSu\n\nMo\n\nTu\n\nWe\n\nTh\n\nFr\n\nSa\n\n10\n\n34 33 22\n\n89\n\n3\n\n4\n\n8\n\n1:24 Late half\n\nQ3 - 7:0\n\n10\n\n11\n\n12\n\n13\n\n14\n\nKettle TV\n\n.\n\nhlight\n\n12 3 4\n\nAL\n\nMAR\n\n16\n\n17\n\n18\n\n19\n\nyAC)\n\n21\n\n29 21\n\n50\n\n9-3\n\ntT\n\nCAL\n\ni\n\nTA\n\n7EOI TALES BSF\n\n28 25\n\n53\n\n3-9\n\nvg I 5.2"
+      }
+    },
+    {
+      "id": "11-ncaab-tournament",
+      "file": "docs/screenshots/11-ncaab-tournament.png",
+      "sha256": "a5f4b996ec55833176b8ba20f597c7f5a97c92d03cd4417081ebcf311d99e17c",
+      "alt": "NCAAB NCAA tournament First Round. Simulated fixture data.",
+      "state": {
+        "id": "11-ncaab-tournament",
+        "league": "NCAAB (men)",
+        "period": "Tournaments: first weekend",
+        "filters": [
+          "League\nNCAAB (men)",
+          "Date or round\nTournaments: first weekend",
+          "Tournament\nNCAA tournament",
+          "Round\nFirst Round"
+        ],
+        "card_count": 8,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 103,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NCAAB",
+          "NCAA",
+          "First",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "e5054a1f5916c94edab526fa359f55229c5bed6019ff49ef868d5ea565c1a868",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "11-ncaab-tournament",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 147431,
+        "nonblank": true,
+        "ocr_expected": [
+          "NCAAB",
+          "NCAA",
+          "First",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NCAAB (men) | Tournaments: first weekend | SIMULATED\n\nNCAAB (men) y\u00a5\n\nTournaments:\n\nfirst weekend v\n\nNCAA tournament vy\n\nFirst Round vy\n\nSIMULATED\n\nMenu\n\nThu 11:15 AM\n\nThu 11:15 AM\n\nNCAA First Round\n\n1 2\n\nNCAA First Round\n\nArcline\n\n1 2\n\nQuad Sports\n\nTID\n\nJUN\n\n#9\n\n0-3\n\n|\n\n#10\n\n1-2\n\nELM\n\nSTI\n\n#8\n\n0-3\n\n|\n\n#5\n\n0-3\n\nThu 11:15 AM\n\nThu 11:15 AM\n\nNCAA First Round\n\n1 2\n\nNCAA First Round\n\n1 2\n\nVarsity 3\n\nQuad Sports\n\nDEE\n\nBLA\n\n|\n\n1-2\n\n2-1\n\nBRA\n\nHOL\n\n|\n\n#11\n\nS10)\n\n|\n\n#4\n\n0-3\n\nFri 11:15 AM\n\nFri 11:15 AM\n\nNCAA First Round\n\nArcline\n\n1 2\n\nNCAA First Round\n\nArcline\n\n1 2\n\nKIN\n\nyan\n\n4095\n\n8)\n\n| Qur"
+      }
+    },
+    {
+      "id": "12-mlb-division",
+      "file": "docs/screenshots/12-mlb-division.png",
+      "sha256": "4a8cdaaf42a8772cd38fff211b950e966770112fe709f5be7b860c79654b6e6c",
+      "alt": "MLB American League East division. Simulated fixture data.",
+      "state": {
+        "id": "12-mlb-division",
+        "league": "MLB",
+        "period": "Sun Nov 15",
+        "filters": [
+          "League\nMLB",
+          "Date or round\nSun Nov 15",
+          "AL / NL\nAmerican League",
+          "Division\nAL East"
+        ],
+        "card_count": 3,
+        "visible_cards": 3,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "MLB",
+          "AL",
+          "East",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "2a7e2dc74d89b19bacb0dc017b1a608d9fde224c202f8d33b9d460ff6eeb02f4",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "12-mlb-division",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 88450,
+        "nonblank": true,
+        "ocr_expected": [
+          "MLB",
+          "AL",
+          "East",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | MLB | Sun Nov 15 | SIMULATED\n\nMLB vy\n\nSun Nov 15 \u00a5\n\nAmerican\n\nAL East vy\n\nSIMULATED\n\nMenu\n\nLeague v\n\nBot 5th RISP\n\nTop 6th RISP\n\nKettle TV\n\nRH\n\nArcline\n\nRH\n\nE\n\nORC\n\nVAL\n\n79-76\n\n47\n\n93-62\n\n45 0\n\n_HOL\n\nROS\n\n82-73\n\n6 i0\n\n92-63\n\n251\n\nSun 9:10 PM\n\nKettle TV\n\nRH\n\nSTI\n\n|\n\n93-62\n\nSIL\n\n|\n\n79-76"
+      }
+    },
+    {
+      "id": "13-nhl-conference",
+      "file": "docs/screenshots/13-nhl-conference.png",
+      "sha256": "4c4207b53aea33e505f5ee8193054a383f564d52cc0085e3a595d127294f2539",
+      "alt": "NHL Eastern conference. Simulated fixture data.",
+      "state": {
+        "id": "13-nhl-conference",
+        "league": "NHL",
+        "period": "Sun Nov 15",
+        "filters": [
+          "League\nNHL",
+          "Date or round\nSun Nov 15",
+          "Conference\nEastern",
+          "Division\nAll divisions"
+        ],
+        "card_count": 7,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 44,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          960,
+          540
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NHL",
+          "Eastern",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "d017b2d6a07069df83955d3201cdbbeb967b12d1a518dba4b6bc71e3f9f6afa7",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1920,
+          1080
+        ]
+      },
+      "verification": {
+        "id": "13-nhl-conference",
+        "pixel_size": [
+          1920,
+          1128
+        ],
+        "bytes": 146111,
+        "nonblank": true,
+        "ocr_expected": [
+          "NHL",
+          "Eastern",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NHL | Sun Nov 15 | SIMULATED\n\nNHL y\n\nSun Nov 15 \u00a5\n\nEastern yv\n\nAll divisions v\n\nSIMULATED\n\nMenu\n\nFinal\n\nSun\n\nFinal\n\nSun\n\nNorthlight\n\nArcline\n\nSOU\n\nHOL\n\n|\n\n8-8-0\n\n11-5-0\n\nWRE\n\nPEB\n\n|\n\n9-6-1\n\n11-3-2\n\nP3\n\n0:40 Late period\n\nP3\n\n12:10 GOAL\n\nColdfront TV\n\nArcline\n\nWES\n\nCOL\n\n|\n\n4-10-2\n\n|\n\n7-8-1\n\nMAP\n\nTHO\n\n|\n\n7-8-1\n\n8-8-0\n\nP2\n\n1:55 Late period\n\n[Pal\n\n1:30 Late period\n\nArcline\n\nRinkline\n\nLAK\n\nBIR\n\n4-11-1\n\n10-4-2\n\n|\n\nFLI\n\nGRE\n\n|\n\n6-8-2\n\n|\n\n8-6-2"
+      }
+    },
+    {
+      "id": "14-phone-nfl",
+      "file": "docs/screenshots/14-phone-nfl.png",
+      "sha256": "5693ee4548bbc6609db96198f57bba3f4a3a2cd4e6a303ebbda3bdc916ec1bb3",
+      "alt": "NFL board at phone width. Simulated fixture data.",
+      "state": {
+        "id": "14-phone-nfl",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 3,
+        "favorites": [],
+        "header_height": 220.00001525878906,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "86983d24d38fcd4b96c72e5854fdb7ca0ef145bf6d76aaaa21c9effaeeb99cf8",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1170,
+          2532
+        ]
+      },
+      "verification": {
+        "id": "14-phone-nfl",
+        "pixel_size": [
+          1170,
+          2604
+        ],
+        "bytes": 169143,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "Week",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nALL conferences yv\n\nALL divisions vy\n\nSIMULATED\n\nMenu\n\nDelayed - Q4 9:03\n\nNorthlight\n\n1\n\nKFK\n\n7\n\n17\n\n6-3\n\n_ DPS\n\n4-5\n\n17\n\nOT\n\n6:12 OT\n\nGridcast\n\nOT\n\n: CCQ\n\n24\n\nFHT\n\n5-4\n\n14\n\n24\n\n3:58\n\nQ2\n\nArcline\n\n, QFH\n\n|\n\n5-4\n\nRMS\n\n6-3\n\nQ2\n\n7:14 RZ\n\nGridcast\n\nWCW\n\n8-1"
+      }
+    },
+    {
+      "id": "15-phone-inline",
+      "file": "docs/screenshots/15-phone-inline.png",
+      "sha256": "ab48ac414c41d48f69b0b3e4eae0cc59046c1f89e62f3ae24db74377e3d2eb38",
+      "alt": "NFL inline Situation at phone width. Simulated fixture data.",
+      "state": {
+        "id": "15-phone-inline",
+        "league": "NFL",
+        "period": "Week 11",
+        "filters": [
+          "League\nNFL",
+          "Week or round\nWeek 11",
+          "Conference\nAll conferences",
+          "Division\nAll divisions"
+        ],
+        "card_count": 16,
+        "visible_cards": 1,
+        "favorites": [],
+        "header_height": 220.00001525878906,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NFL",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "fbaa73995cfaf9c696b3772eb81da733cb5d5eecf40f4c83e42c70cbd2d6a944",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1170,
+          2532
+        ]
+      },
+      "verification": {
+        "id": "15-phone-inline",
+        "pixel_size": [
+          1170,
+          2604
+        ],
+        "bytes": 179143,
+        "nonblank": true,
+        "ocr_expected": [
+          "NFL",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NFL | Week 11 | SIMULATED\n\nNFL vy\n\nWeek 11 v\n\nALL conferences yv\n\nALL divisions vy\n\nSIMULATED\n\nMenu\n\nDelayed - Q4 9:\n\n03\n\nNorthlight\n\nKFK\n\n17\n\n6-3\n\n_ DPS\n\n4-5\n\n17\n\nOT\n\n6:12 OT\n\nGridcast\n\nOT\n\nT\n\n- CCQ\n\n24\n\nFHT\n\n5-4\n\n14 7\n\n24\n\nSituation\n\nCCQ at FHT\n\nclose\n\n|\n\n2nd & 6\n\nFHT 38\n\nCCQ ball \u2014\n\nS. Navarro pass deep middle to K.\n\nAbernathy for 9 yards to the FHT...\n\nTimeouts CCQ eco\n\nFHT eeo"
+      }
+    },
+    {
+      "id": "16-phone-ncaaw",
+      "file": "docs/screenshots/16-phone-ncaaw.png",
+      "sha256": "28053801f5cae67ad5d5d67278741028475673e9202cbe339c89495f858b0c4c",
+      "alt": "NCAAW board at phone width. Simulated fixture data.",
+      "state": {
+        "id": "16-phone-ncaaw",
+        "league": "NCAAW (women)",
+        "period": "Sun Nov 15",
+        "filters": [
+          "League\nNCAAW (women)",
+          "Date or round\nSun Nov 15",
+          "Conference\nAll conferences",
+          "Ranking\nAll teams"
+        ],
+        "card_count": 12,
+        "visible_cards": 4,
+        "favorites": [],
+        "header_height": 161,
+        "simulation_text_in_dom": true,
+        "app_simulation_exposed": true,
+        "viewport": [
+          390,
+          844
+        ],
+        "details": null,
+        "expected_ocr": [
+          "NCAAW",
+          "SIMULATED"
+        ]
+      },
+      "raw_sha256": "12a39e6155046a8b0f8dfe93054438c1a679c049148b966116a0822bcc1710cd",
+      "framing": {
+        "caption_band_css_pixels": 24,
+        "app_viewport_unchanged": true,
+        "raw_pixel_size": [
+          1170,
+          2532
+        ]
+      },
+      "verification": {
+        "id": "16-phone-ncaaw",
+        "pixel_size": [
+          1170,
+          2604
+        ],
+        "bytes": 203097,
+        "nonblank": true,
+        "ocr_expected": [
+          "NCAAW",
+          "SIMULATED"
+        ],
+        "ocr_confirmed": true,
+        "ocr_text": "WTFScore | NCAAW (women) | Sun Nov 15 | SIMULATED\n\nNCAAW (women) vy\n\nSun Nov 15 yv\n\nALL conferences yv\n\nALL teams v\n\nSIMULATED\n\nMenu\n\nFinal\n\nSun\n\nArcline\n\n12 3 4\n\nPIN\n\n19 19 17 22\n\nia\n\n|\n\n2.\n\nJUN\n\n20 14 23 15\n\n72\n\n|\n\nOFS\n\nFinal\n\nSun\n\nCampus North\n\n12 3 4\n\nKIN\n\n16 20 15 20\n\n|\n\n#16\n\na2.\n\nvi\n\nBLA\n\n18 12 19 18\n\n|\n\n2-1\n\n67\n\nFinal\n\nSun\n\nArcline\n\n12 3 4\n\nORC\n\n2.\n\n16 14 19 14\n\n63\n\nQUI\n\n#14\n\n0-3\n\n2119 20 18\n\n78\n\nFinal\n\nSun\n\nCampus North\n\n12 3 4\n\nTID\n\n18 22 18 22\n\n80\n\n|\n\n3-0\n\nRAV\n\n24 20 15 16\n\n75\n\n|\n\n3-0"
+      }
+    }
+  ],
+  "limitations": "Simulated fixture data. Viewport proxies, not physical-device or screen-reader acceptance.",
+  "verification": {
+    "result": "PASS",
+    "captures": 16,
+    "ocr": "Tesseract, psm 11",
+    "visual_review": "Completed: all 16 saved images inspected; documented pointer-hover and calendar-scroll limitations retained."
+  },
+  "publication_review": {
+    "reviewed_frames": 16,
+    "app_viewport_unchanged": true,
+    "limitations": [
+      "Pointer hover replaces football priority border colors with gray; text cues remain visible.",
+      "In the TV-size capture, the calendar footer and later day rows require scrolling.",
+      "Scrollable boards and menus can continue beyond the viewport.",
+      "Physical-device and screen-reader acceptance remains pending."
+    ]
+  }
+}
