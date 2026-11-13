@@ -24,7 +24,7 @@
 // last regular-season date per league and season, so choosing Regular season
 // again returns to it; a fresh daily view starts on today.
 //
-// 010 football (NFL and NCAAF): each Demo screen keeps its own favorites in
+// Football (NFL and NCAAF): each Demo screen keeps its own favorites in
 // memory (favorites.mjs); a reload clears them. Favorite teams are chosen in
 // the Menu; each football card has a star that includes or excludes that one
 // game. The football board always shows favorite games first, then the others
@@ -686,7 +686,7 @@ export function mountBoard({ win, doc, root, week = null, now = readClock(win), 
     screen.settings.order = mode === 'status' ? 'status' : 'kickoff';
     let pins = null;
     if (screen.settings.order === 'status') {
-      // Open games hold their current place (CD-09); the rest sort around them.
+      // Open games hold their current place; the rest sort around them.
       const index = new Map(order.map((g, i) => [g.id, i]));
       pins = new Map(expansion.expandedIds().map((id) => [id, index.get(id)]));
     }

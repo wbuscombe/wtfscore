@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - spatial navigation graph (arrow keys / D-pad).
+// WTFScore - spatial navigation graph (arrow keys / D-pad).
 // Built from card rectangles. The app builds it from the same layout output it
 // applies to the DOM, so the tested graph is the graph the keyboard uses.
 

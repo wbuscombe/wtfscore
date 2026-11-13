@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - BROWSER-MEASURED checks.
+// WTFScore - BROWSER-MEASURED checks.
 // Reads actual getBoundingClientRect() and computed styles in the running page.
 // Only meaningful inside a real browser; the result names the actual viewport
 // and DPR it was taken at. It never substitutes for device evidence.

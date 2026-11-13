@@ -357,19 +357,19 @@ test('teams are invented: unique names and abbreviations per league, valid colou
   assert.ok(!/https?:\/\//i.test(blob) && !/www\./i.test(blob));
 });
 
-// ---------- 008: derived drive and team stats ----------
+// ---------- derived drive and team stats ----------
 const STARTED = new Set(['live', 'halftime', 'end_period', 'delayed', 'suspended', 'final']);
 const IN_PROGRESS = new Set(['live', 'halftime', 'end_period', 'delayed', 'suspended']);
 const everyGame = () => LEAGUES.flatMap((l) => cat.seasons(l.id).flatMap((s) => cat.allGames(l.id, s.id)));
 
-// 008002: the canonical g11-112 gains an invented current position in the
+// The canonical g11-112 gains an invented current position in the
 // derived catalog only; these are the only original fields allowed to change.
 const G112_SUPPLIED = ['possession', 'situation', 'lastPlay', 'missing'];
-test('the original invented games are unchanged: every field of all 802 games except the new drive and team stats matches the pre-008 catalog', () => {
+test('the original invented games are unchanged: every field of all 802 games except the new drive and team stats matches the catalog before drives and team stats were derived', () => {
   const raw112 = generateWeek().games.find((g) => g.id === 'g11-112');
   const strip = (g) => {
     const { drive, teamStats, ...rest } = g;
-    // 008002: g11-112's supplied current fields are compared with the raw fixture they replace
+    // g11-112's supplied current fields are compared with the raw fixture they replace
     if (g.id === 'nfl-2026-g11-112') for (const k of G112_SUPPLIED) rest[k] = raw112[k];
     return rest;
   };
@@ -438,14 +438,14 @@ test('every in-progress football game has a drive with start, play count, yards 
   assert.deepEqual([gl.team, gl.end, gl.direction, gl.inProgress], ['away', 8, 'right', true], 'goal to go at the 8, driving right');
   const ko = nfl.get('g11-195').drive;
   assert.deepEqual([ko.team, ko.end, ko.result], ['away', 0, 'Touchdown'], 'the kicking team just scored a touchdown');
-  // 008002: the game with no live position in its raw fixture has an invented current drive in the catalog
+  // the game with no live position in its raw fixture has an invented current drive in the catalog
   const blank = nfl.get('g11-112');
   assert.equal(generateWeek().games.find((g) => g.id === 'g11-112').situation, null, 'the raw missing-data fixture keeps its missing position');
   assert.deepEqual([blank.drive.team, blank.drive.result, blank.drive.inProgress, blank.drive.end], ['home', null, true, blank.situation.yardsToEndzone], 'its current drive matches its current position');
   assert.equal(nfl.get('g11-140').drive.team, 'home', 'the delayed game keeps its drive');
 });
 
-// ---------- 008002: every live football game has a current position ----------
+// ---------- every live football game has a current position ----------
 // A live football game must say where the ball is now: the team with the ball,
 // a finite ball position, a valid down and distance (or a kickoff spot), and a
 // drive that matches them. A last completed drive alone is not enough.

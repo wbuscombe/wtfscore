@@ -1,12 +1,12 @@
-// WTFScore DEL-0 - scale ladder and model dimensions.
+// WTFScore - scale ladder and model dimensions.
 // Pure module shared by the browser and the Node tests. All values are CSS px.
 // These are MODEL numbers. The browser panel measures what actually renders.
 
 export const SCALE_MIN = 1;
 export const SCALE_MAX = 10;
-export const SCALE_BASELINE = 5; // CD-17: step 5 is the baseline
-export const TEXT_FLOOR_PX = 14; // plan 4.7: no text below 14 CSS px at the TV viewport
-export const TOTALS_FLOOR_PX = 28; // plan 4.7 / D-12: team totals at least 28 CSS px
+export const SCALE_BASELINE = 5; // step 5 is the baseline
+export const TEXT_FLOOR_PX = 14; // no text below 14 CSS px at the TV viewport
+export const TOTALS_FLOOR_PX = 28; // team totals at least 28 CSS px
 export const SAFE_INSET_RATIO = 0.05; // 5% safe area on every edge
 
 // Base sizes at scale factor 1.0 (scale step 5). The stylesheet uses the same

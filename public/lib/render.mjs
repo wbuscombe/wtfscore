@@ -2,7 +2,7 @@
 // All fixture text is written with textContent. No HTML parsing sinks are used
 // anywhere in the client. Colors are validated as 6-digit hex before use.
 // `doc` is injected so Node tests can render against a minimal fake document.
-// 010: no card carries a per-game More/Leaders button; the whole card opens a
+// No card carries a per-game More/Leaders button; the whole card opens a
 // game (in place on Phone, the details window on TV). A football card carries
 // one favorite star (a toggle button, never an opener), and an active football
 // game shows its one priority cue as a thick outer frame plus a text tag.
@@ -502,7 +502,7 @@ export function buildCard(doc, game, teams, { zone, badges = false, mode = 'phon
   const sec3 = leadersSection(doc, game, teams);
   root.appendChild(sec2);
   root.appendChild(sec3);
-  // act: no card has a per-game More/Leaders button (010); kept null for callers.
+  // act: no card has a per-game More/Leaders button; kept null for callers.
   const ref = { root, sections: { 1: part.sec1, 2: sec2, 3: sec3 }, expandable, act: null, fav: part.fav, favorite: star ? favorite === true : null, status: part.status, badges: part.badges };
   if (mode === 'tv') setCardStage(ref, game, teams, zone, 1, mode);
   return ref;

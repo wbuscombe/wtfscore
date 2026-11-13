@@ -133,7 +133,7 @@ export function buildMenu(doc) {
     return g;
   };
   const scores = group('Scores');
-  // 010: football favorite teams, one labelled native dropdown. Hidden until
+  // Football favorite teams, one labelled native dropdown. Hidden until
   // the board fills it (NFL and NCAAF only).
   const favRow = row(doc, 'favorites', parts);
   favRow.hidden = true;

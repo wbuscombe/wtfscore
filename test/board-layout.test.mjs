@@ -66,7 +66,7 @@ test('property check: random stages, widths and sizes keep every invariant', () 
   }
 });
 
-// Full-row placement (007, replacing the 006 keep-place-if-it-fits rule),
+// Full-row placement (it replaced an earlier keep-place-if-it-fits rule),
 // checked against the closed board rather than the layout's own labels: an
 // open card always spans the whole content width alone in its row. A card
 // that was first in its row keeps its place; any other moves once to the
@@ -244,7 +244,7 @@ test('validator negative controls: overlap, bounds, order, detached or missing p
   assert.ok(kinds(L).has('full-row'));
 });
 
-test('report-only density (K3): fully visible compact games at the default text size, model 1920x1080', () => {
+test('report-only density: fully visible compact games at the default text size, model 1920x1080', () => {
   const s = TEXT_SIZES[0].scale;
   const rows = [];
   for (const open of [0, 3]) {

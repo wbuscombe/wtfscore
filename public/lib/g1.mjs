@@ -1,6 +1,6 @@
-// WTFScore DEL-0 - G1 decision sheet. PROPOSALS ONLY: the maintainer makes G1.
+// WTFScore - layout decision sheet (developer-only). PROPOSALS ONLY: the maintainer decides.
 // Numbers are computed live from the layout model (model-computed). Anything a
-// browser or the owner must judge is marked UNVERIFIED here.
+// browser or a person must judge is marked UNVERIFIED here.
 
 import { comparisonFor } from './metrics.mjs';
 import { computeLayout, frameGeometry } from './layout.mjs';

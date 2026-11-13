@@ -1,5 +1,5 @@
 // Runtime call-graph check, in its own process: loading the page's controller
-// resolves no comparison, summary, G1, browser-measure or preset module, so
+// resolves no comparison, summary, decision-sheet, browser-measure or preset module, so
 // normal startup and input cannot run that code.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

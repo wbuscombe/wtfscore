@@ -71,7 +71,7 @@ function moduleGraph(entry) {
   return [...seen].map(rel).sort();
 }
 
-test('static dependency inventory: the page imports only relative scoreboard modules, never the comparison, summary, G1, measure or preset code', () => {
+test('static dependency inventory: the page imports only relative scoreboard modules, never the comparison, summary, decision-sheet, measure or preset code', () => {
   const inventory = moduleGraph('app.mjs');
   console.log(`static module inventory (${inventory.length}): ${inventory.join(', ')}`);
   for (const needed of ['lib/board.mjs', 'lib/board-layout.mjs', 'lib/render.mjs', 'lib/chrome.mjs', 'lib/catalog.mjs', 'lib/sports.mjs', 'lib/menu.mjs']) assert.ok(inventory.includes(needed), needed);

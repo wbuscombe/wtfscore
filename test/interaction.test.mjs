@@ -2,15 +2,15 @@ import { uiChoose, uiControl, uiOptions, uiRow, uiValue } from './fake-dom.mjs';
 // Behaviour tests for the score-first board, driven through the same event
 // handlers the browser uses, on the fake DOM. These are model tests: they are
 // not browser, Safari, device, touch or human-latency evidence.
-// 007 changes, each mapped in the report: the one Settings button and its
+// Earlier design changes these tests follow: the one Settings button and its
 // three radio groups became the one Menu with native <select> controls, and
-// the 006 "keep place if all three parts fit from the card's column" rule
+// the earlier "keep place if all three parts fit from the card's column" rule
 // became "an open game always takes one full row at its place".
-// 008: these tests open games in place, which is the Phone presentation, so
+// These tests open games in place, which is the Phone presentation, so
 // their 1440x900 board picks Phone explicitly (Auto would pick TV there). The
 // TV details window and the Auto rule at real phone and TV sizes are tested in
 // popup.test.mjs.
-// 010 changes, each mapped in the report: no game has a per-game More/Leaders
+// Later design changes these tests follow: no game has a per-game More/Leaders
 // button (each step is another activation of the score box or Enter); the NFL
 // board keeps one fixed football order (favorites, in progress, upcoming,
 // final) with no Order choice, so the start-time and live-first Order checks
@@ -28,7 +28,7 @@ import { dims, TEXT_FLOOR_PX, TOTALS_FLOOR_PX } from '../public/lib/sizing.mjs';
 const NS = (id) => `nfl-2026-${id}`;
 const BASE = generateWeek();
 const KICKOFF_IDS = sortGames(BASE.games, 'kickoff').map((g) => NS(g.id));
-const FOOTBALL_IDS = sortFootball(BASE.games).map((g) => NS(g.id)); // 010: no favorites yet
+const FOOTBALL_IDS = sortFootball(BASE.games).map((g) => NS(g.id)); // no favorites yet
 const EXPANDABLE = sortGames(BASE.games, 'kickoff').filter(isExpandable).map((g) => NS(g.id));
 const NOT_EXPANDABLE = sortGames(BASE.games, 'kickoff').filter((g) => !isExpandable(g)).map((g) => NS(g.id));
 const ENGINEERING = /\bLC ?[1-4]\b|\bexpand ?[36]\b|\bviewport\b|\bDPR\b|\bmodel\b|\bJSON\b|\bcompar(e|ison)\b|\bG1\b|\bstage ?[123]\b|\bpreset|\bcandidate|\bscenario|\bDEL-\d|\bfixture|\bmetric/i;
@@ -159,7 +159,7 @@ test('a pregame, postponed or unknown game ignores activation: no state change, 
   }
 });
 
-test('010: no per-game More or Leaders button; each score-box activation is one step (situation, leaders, close); the situation close button collapses in one press', () => {
+test('no per-game More or Leaders button; each score-box activation is one step (situation, leaders, close); the situation close button collapses in one press', () => {
   const { app, doc } = setup();
   const id = EXPANDABLE[3];
   const ref = app.cards.get(id);
@@ -195,9 +195,9 @@ test('010: no per-game More or Leaders button; each score-box activation is one 
   same(app.stats.activations, 7);
 });
 
-test('K1 keyboard: Enter and Space step forward, Escape steps back, arrows move focus spatially, focus stays on the card', () => {
+test('keyboard: Enter and Space step forward, Escape steps back, arrows move focus spatially, focus stays on the card', () => {
   const { doc, app } = setup();
-  // 010: the fixed football order puts games in progress first; its first game is the one opened here.
+  // The fixed football order puts games in progress first; its first game is the one opened here.
   const id = app.order[0];
   assert.ok(EXPANDABLE.includes(id));
   const ref = app.cards.get(id);
@@ -216,7 +216,7 @@ test('K1 keyboard: Enter and Space step forward, Escape steps back, arrows move 
   same(app.stats.transitions, 4);
   press(ref.root, 'Enter', { repeat: true });
   same(app.expansion.stageOf(id), 1, 'a held key repeating does not step again');
-  // 010: the card's inner button is now its favorite star (no More/Leaders button).
+  // The card's inner button is its favorite star (no More/Leaders button).
   const game = app.view.games.find((g) => g.id === id);
   ref.fav.focus();
   same(press(ref.fav, 'Enter'), true, 'Enter on an inner button is left to the button');
@@ -260,7 +260,7 @@ test('K1 keyboard: Enter and Space step forward, Escape steps back, arrows move 
   same(app.header.menuBtn.tabIndex, 0);
 });
 
-test('K1 Escape on a closed card steps back the most recently opened game; focus stays where it was', () => {
+test('Escape on a closed card steps back the most recently opened game; focus stays where it was', () => {
   const { doc, app } = setup();
   const [a, b] = EXPANDABLE;
   click(scoreText(app, a));
@@ -273,7 +273,7 @@ test('K1 Escape on a closed card steps back the most recently opened game; focus
   same(doc.activeElement, app.cards.get(pre).root);
 });
 
-test('K1: the same keyed card elements persist through open, order, text size, open-limit and badge changes; nothing is rebuilt', () => {
+test('the same keyed card elements persist through open, order, text size, open-limit and badge changes; nothing is rebuilt', () => {
   const { doc, app } = setup();
   const before = new Map([...app.cards].map(([id, ref]) => [id, ref.root]));
   const articles = () => doc.created.filter((e) => e.tagName === 'ARTICLE').length;
@@ -334,7 +334,7 @@ test('one connected card in the DOM: open parts are placed inside the game card,
     const ref = app.cards.get(id);
     const kids = app.board.children.length;
     for (const stage of [2, 3]) {
-      click(scoreText(app, id)); // 010: the next step is another activation of the score box
+      click(scoreText(app, id)); // the next step is another activation of the score box
       const p = cellOf(app, id);
       same(ref.root.getAttribute('data-arrangement'), want, `${width} stage ${stage}`);
       assert.deepEqual(styleBox(ref.root), [p.x, p.y, p.w, p.h].map((v) => Math.round(v * 100) / 100));
@@ -376,7 +376,7 @@ test('Games open at once (LRU): the default 3 closes the least recently opened; 
   assert.match(app.cards.get(d).root.getAttribute('aria-label'), /Details closed\. Enter shows the situation\.$/);
 });
 
-test('010 Order: football keeps one fixed order from any shuffled input (in progress, upcoming, final, other), with no Order choice; NBA keeps start time and live games first', () => {
+test('Order: football keeps one fixed order from any shuffled input (in progress, upcoming, final, other), with no Order choice; NBA keeps start time and live games first', () => {
   for (const seed of [1, 2, 3, 7, 99, 2026]) assert.deepEqual(setup({ seed }).app.order, FOOTBALL_IDS, `seed ${seed}`);
   const { app } = setup();
   assert.deepEqual(cardIdsInDom(app), FOOTBALL_IDS);
@@ -410,8 +410,8 @@ test('010 Order: football keeps one fixed order from any shuffled input (in prog
   assert.deepEqual(cardIdsInDom(app), kick);
 });
 
-test('Order change keeps open games in their place (CD-09) and keeps them open', () => {
-  // 010: football has no Order choice, so this runs on NBA (pins still apply there).
+test('Order change keeps open games in their place and keeps them open', () => {
+  // Football has no Order choice, so this runs on NBA (pins still apply there).
   const { app } = setup();
   app.openMenu();
   choose(app, 'league', 'nba');
@@ -471,7 +471,7 @@ test('Menu: native labelled selects for every choice, a screen-name field, and o
   assert.deepEqual(optionsOf(app.menu.selects.get('order')).map((o) => o.textContent), ORDERS.map((o) => o.label));
   same(app.menu.nameInput.tagName, 'INPUT');
   same(app.menu.nameInput.getAttribute('maxlength'), '32');
-  // 008: the Date button and its calendar are also in the sheet, hidden for football.
+  // The Date button and its calendar are also in the sheet, hidden for football.
   assert.deepEqual(s.all((e) => e.tagName === 'BUTTON' && !e.closest('.cal') && e !== uiControl(app, 'period')).map((b) => b.getAttribute('aria-label') || b.textContent), ['Close menu', 'Clear filters']);
   same(uiControl(app, 'period').getAttribute('aria-haspopup'), 'listbox', 'a football week uses the foreground listbox');
   same(app.header.calendar.root.hidden, true);
@@ -590,7 +590,7 @@ test('normal input path: 300 mixed inputs schedule no frame, timer or URL write;
       else press(doc.activeElement, 'Escape');
     } else if (!ref) continue;
     else if (r < 0.35) click(ref.sections[1].byClass('status')[0]);
-    else if (r < 0.5 && ref.fav) click(ref.fav); // 010: the star (the More/Leaders button is gone)
+    else if (r < 0.5 && ref.fav) click(ref.fav); // the star (there is no More/Leaders button)
     else if (r < 0.7) {
       ref.root.focus();
       press(ref.root, ['Enter', ' ', 'Escape', 'ArrowRight', 'ArrowDown'][Math.floor(rnd() * 5)]);

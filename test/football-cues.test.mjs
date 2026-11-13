@@ -1,7 +1,7 @@
 import { uiChoose } from './fake-dom.mjs';
-// 010 football priority frame: the decision table (both leagues, every margin
+// Football priority frame: the decision table (both leagues, every margin
 // and clock boundary, missing and invalid data, quarters, halftime, final,
-// overtime and red zone), touchdown combinations (G4), the card and details
+// overtime and red zone), touchdown combinations, the card and details
 // window frame, fixture-reachable cases and the CSS that draws them. Model
 // tests: the pixels themselves are checked in a browser, not here.
 import { test } from 'node:test';
@@ -105,7 +105,7 @@ test('decision table: halftime, final and games not in progress get no current c
   for (const sport of ['basketball', 'hockey', 'baseball']) same(footballPriority({ ...mk('nba'), sport, period: 4, clock: '1:00', total: { away: 80, home: 79 } }), null, `${sport}: no football cue`);
 });
 
-test('G4 touchdown combinations: with red zone, overtime, late orange or late yellow the priority frame stays and the TD tag stays visible; the green touchdown frame shows only without a priority cue', () => {
+test('touchdown combinations: with red zone, overtime, late orange or late yellow the priority frame stays and the TD tag stays visible; the green touchdown frame shows only without a priority cue', () => {
   const cases = [
     ['rz', mk('nfl', { scoringCue: 'TD', redZone: true, period: 2, clock: '7:00', total: { away: 7, home: 3 } }), 'red', 'RZ', 'tag-rz'],
     ['ot', mk('ncaaf', { scoringCue: 'TD', period: 5, clock: '6:00', total: { away: 30, home: 24 } }), 'orange', 'OT', 'tag-prio'],

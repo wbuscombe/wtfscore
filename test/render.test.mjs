@@ -181,7 +181,7 @@ test('finals show last play without a field graphic; cues are tagged in text, no
   assert.equal(corr.root.byClass('tag-corr')[0].textContent, 'Corrected');
 });
 
-test('010: setCardStage shows exactly the sections of one stage on the same element and relabels the card (no per-game control)', () => {
+test('setCardStage shows exactly the sections of one stage on the same element and relabels the card (no per-game control)', () => {
   const g = byId.get('g11-149');
   const { doc, ref } = render(g);
   const created = doc.created.length;
@@ -207,11 +207,11 @@ test('010: setCardStage shows exactly the sections of one stage on the same elem
   assert.equal(pre.sections[2].hidden, true);
 });
 
-// ---------- 008: TV cards and the TV details parts ----------
+// ---------- TV cards and the TV details parts ----------
 const nfl = new Map(buildCatalog().resolve({ league: 'nfl' }, DEFAULT_ZONE).games.map((g) => [g.localId, g]));
 const tvTags = new Set(['DIV', 'SPAN', 'BUTTON', 'TABLE', 'CAPTION', 'THEAD', 'TBODY', 'TR', 'TH', 'TD', 'P']);
 
-test('010 TV cards: no per-game button; the card says Enter opens the details window; a card never opens in place on TV; phone labels come back unchanged', () => {
+test('TV cards: no per-game button; the card says Enter opens the details window; a card never opens in place on TV; phone labels come back unchanged', () => {
   const doc = new FakeDocument();
   const g = nfl.get('g11-149');
   const ref = buildCard(doc, g, week.teams, { zone: DISPLAY_ZONE, mode: 'tv' });
@@ -247,7 +247,7 @@ test('TV details parts: the scorecard has the full score and no button; the Situ
   const fin = buildSituationPanel(doc, nfl.get('g11-157'), week.teams);
   assert.equal(fin.byClass('field').length, 0, 'a final draws no live field');
   assert.doesNotMatch(fin.textContent, /Drive/, 'and no drive');
-  // 008002: the catalog's g11-112 has an invented current drive; the raw fixture
+  // The catalog's g11-112 has an invented current drive; the raw fixture
   // with only a last completed drive still renders its gaps honestly
   const now112 = buildSituationPanel(doc, nfl.get('g11-112'), week.teams);
   assert.match(now112.textContent, /2nd & 6 · ZHG 41 · ZHG ball ←/);

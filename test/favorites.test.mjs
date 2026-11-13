@@ -1,5 +1,5 @@
 import { uiChoose, uiControl, uiOptions, uiRow, uiValue } from './fake-dom.mjs';
-// 010 football favorites, fixed football order, the star's D-pad mapping and
+// Football favorites, fixed football order, the star's D-pad mapping and
 // isolation, focus and scroll after a reorder, and the shared scorecards with
 // no More/Leaders button, driven through the real board handlers on the fake
 // DOM. Model tests: not browser, Safari, TV-remote or device evidence.
@@ -41,7 +41,7 @@ function toLeague(app, id) {
 }
 
 // ---------- the store ----------
-test('Favorites store: either team makes a game a favorite; include and exclude overrides; a matching star use clears the override; the G2 sequence; ids per league', () => {
+test('Favorites store: either team makes a game a favorite; include and exclude overrides; a matching star use clears the override; the exclude, unfavorite and refavorite sequence; ids per league', () => {
   const f = new Favorites();
   const g = { id: 'nfl-2026-g11-101', league: 'nfl', away: 'AAA', home: 'BBB' };
   const other = { id: 'nfl-2026-g11-102', league: 'nfl', away: 'CCC', home: 'DDD' };
@@ -57,7 +57,7 @@ test('Favorites store: either team makes a game a favorite; include and exclude 
   f.setTeam('nfl', 'CCC', true);
   same(f.isFavorite(other), true, 'the away team is enough');
   f.setTeam('nfl', 'CCC', false);
-  // G2: exclude, unfavorite and refavorite the team: the exclusion holds; the star again restores inheritance
+  // exclude, unfavorite and refavorite the team: the exclusion holds; the star again restores inheritance
   assert.deepEqual(f.toggleGame(g), { on: false, override: false });
   same(f.setTeam('nfl', 'BBB', false), true);
   same(f.isFavorite(g), false);
@@ -171,7 +171,7 @@ test('Favorite teams in the Menu (NFL and NCAAF): a labelled native dropdown fil
   }
 });
 
-test('G2 on the board, both football leagues and both Demo screens: a team favorite, a game excluded by its star, the team unfavorited and favorited again: the exclusion holds; the star again resumes inheritance; an included game stays', () => {
+test('star exclusion on the board, both football leagues and both Demo screens: a team favorite, a game excluded by its star, the team unfavorited and favorited again: the exclusion holds; the star again resumes inheritance; an included game stays', () => {
   for (const lg of ['nfl', 'ncaaf']) {
     const { app } = setup();
     app.openMenu();
@@ -315,7 +315,7 @@ test('the star only changes favorites: click or tap, Enter, Space and remote Sel
   same(tv.doc.activeElement, tref.root, 'focus is back on the same game');
 });
 
-test('D-pad (G1): Right on a game reaches its own star; from the star Left returns to the game and Right, Up and Down move as from the game; other geometry edges land on games and the upper edge reaches the foreground header', () => {
+test('D-pad: Right on a game reaches its own star; from the star Left returns to the game and Right, Up and Down move as from the game; other geometry edges land on games and the upper edge reaches the foreground header', () => {
   for (const [w, h, pres] of [[1920, 1080, 'tv'], [1440, 900, 'phone'], [390, 844, 'phone']]) {
     for (const lg of ['nfl', 'ncaaf']) {
       const { app, doc } = setup({ width: w, height: h, presentation: pres });
@@ -360,7 +360,7 @@ test('D-pad (G1): Right on a game reaches its own star; from the star Left retur
 });
 
 // ---------- reorder: focus, scrolling, open games and the details window ----------
-test('G3: a star use that reorders the board keeps focus on the same star and game, scrolls only enough to keep it visible, and scrolls nothing when it stays visible', () => {
+test('reorder focus: a star use that reorders the board keeps focus on the same star and game, scrolls only enough to keep it visible, and scrolls nothing when it stays visible', () => {
   const { app, doc, win } = setup({ width: 390, height: 844, presentation: 'auto' });
   same(app.mode, 'phone');
   const H = 844;
@@ -443,7 +443,7 @@ test('a team change while a game is open (Phone) never pins it: the fixed order 
 });
 
 // ---------- shared scorecards: no More or Leaders button (all seven leagues) ----------
-test('010 shared scorecards: no More or Leaders button in any of the seven leagues on Phone or TV; leaders stay reachable by the whole card (Phone) and the details carousel (TV)', () => {
+test('shared scorecards: no More or Leaders button in any of the seven leagues on Phone or TV; leaders stay reachable by the whole card (Phone) and the details carousel (TV)', () => {
   for (const pres of ['phone', 'tv']) {
     for (const l of LEAGUES) {
       const { app, doc } = setup({ width: pres === 'tv' ? 1920 : 1440, height: pres === 'tv' ? 1080 : 900, presentation: pres });

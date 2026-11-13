@@ -163,7 +163,7 @@ function cueOf(g, teams) {
   return { c, ref, label, subtle: ref.root.hasClass('cue-subtle'), strong: ref.root.hasClass('cue-strong'), tags: tag(ref) };
 }
 
-test('C1 football: subtle red zone and strong touchdown only; no strong cue for a field goal, safety or extra point', () => {
+test('football cues: subtle red zone and strong touchdown only; no strong cue for a field goal, safety or extra point', () => {
   const wk = generateWeek();
   const nfl = board('nfl');
   const ns = (id) => nfl.games.find((g) => g.localId === id);
@@ -185,7 +185,7 @@ test('C1 football: subtle red zone and strong touchdown only; no strong cue for 
   assert.ok(!cueOf(byScript(live, (g) => g.situation && g.situation.yardsToEndzone === 24), cf.teams).subtle, 'outside the 20');
 });
 
-test('C1 basketball: subtle cue in the last two minutes of a HALF only (Q2/Q4 for NBA and women, either half for men); never for a basket', () => {
+test('basketball cues: subtle cue in the last two minutes of a HALF only (Q2/Q4 for NBA and women, either half for men); never for a basket', () => {
   for (const [league, yes, no] of [
     ['nba', [[2, '1:24'], [4, '0:48']], [[1, '1:10'], [3, '1:35'], [3, '7:02']]],
     ['ncaaw', [[2, '1:50'], [4, '1:05']], [[1, '1:30'], [3, '0:45'], [3, '6:00']]],
@@ -214,7 +214,7 @@ test('C1 basketball: subtle cue in the last two minutes of a HALF only (Q2/Q4 fo
   assert.equal(lateInHalf(g), false);
 });
 
-test('C1 hockey: subtle cue in the last two minutes of any period; strong cue only for a fresh goal', () => {
+test('hockey cues: subtle cue in the last two minutes of any period; strong cue only for a fresh goal', () => {
   const r = board('nhl');
   const live = r.games.filter((g) => g.status === 'live');
   for (const [p, clock] of [[1, '1:30'], [3, '0:40'], [2, '1:55']]) {
@@ -231,7 +231,7 @@ test('C1 hockey: subtle cue in the last two minutes of any period; strong cue on
   assert.equal(lateInPeriod(g), false, 'only while the clock runs');
 });
 
-test('C1 baseball: subtle cue with a runner on second or third; strong cue only for a fresh run', () => {
+test('baseball cues: subtle cue with a runner on second or third; strong cue only for a fresh run', () => {
   const r = board('mlb');
   const live = r.games.filter((g) => g.status === 'live');
   const bases = (b) => (g) => g.bases && g.bases.first === b[0] && g.bases.second === b[1] && g.bases.third === b[2] && g.scoringCue !== 'RUN';
@@ -314,7 +314,7 @@ test('scoreColumns is defined for every format', () => {
   assert.equal(scoreColumns({}).layout, 'q4', 'a game without a sport is pro football');
 });
 
-// ---------- 008: team stats rows, drive words and their arithmetic checks ----------
+// ---------- team stats rows, drive words and their arithmetic checks ----------
 const T = { AWY: { abbr: 'AWY' }, HOM: { abbr: 'HOM' } };
 
 test('team stats rows per sport in plain words, with every value the data lacks reading "not available"', () => {

@@ -12,7 +12,7 @@
 //    goal, safety, extra point or basketball basket gets no cue at all.
 // Every cue is a text tag and a card class; no colour-only signal, no motion.
 //
-// 010 football priority border (footballPriority): only an active football
+// Football priority border (footballPriority): only an active football
 // game (live, end of a period, delayed or suspended; never halftime, final,
 // pregame, postponed, canceled or unknown) gets a current cue, highest first:
 // a valid red zone (red, any quarter or overtime), overtime (orange, any score

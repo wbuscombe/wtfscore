@@ -2,7 +2,7 @@ import { uiChoose, uiControl, uiOptions, uiRow, uiLabel, uiValue } from './fake-
 // Daily schedules anchored to an injected clock, and the Date calendar in the
 // Menu, through the real handlers on the fake DOM. Every clock here is a fixed
 // instant: nothing depends on when the tests run. Model tests, not browser or
-// device evidence. 008002: a daily league's Period holds one Regular season
+// device evidence. A daily league's Period holds one Regular season
 // choice and the named rounds; the Date control is the only date chooser and a
 // round hides it.
 import { test } from 'node:test';
@@ -258,7 +258,7 @@ test('calendar keyboard and mouse: arrows, Home, End and Page keys move the one 
   const todayBtn = app.empty.byClass('empty-today')[0];
   same(todayBtn.hidden, false);
   same(todayBtn.textContent, 'Today');
-  // 008002: Period shows Regular season; the Date control shows the chosen date
+  // Period shows Regular season; the Date control shows the chosen date
   same(uiValue(app, 'period'), REGULAR_CHOICE, 'Period shows Regular season');
   same(uiControl(app, 'period').textContent, 'Thu Nov 26', 'the Date control shows the chosen date');
   // the choice survives a time zone change, a presentation change and closing the Menu
@@ -305,7 +305,7 @@ test('switching to a football league changes the period button to a week picker 
   choose(app, 'league', 'ncaab');
   choose(app, 'period', 'weekend-2');
   same(uiRow(app, 'tournament').hidden, false);
-  // 008002: a round hides the Date control; the calendar is reached again through Period, Regular season
+  // A round hides the Date control; the calendar is reached again through Period, Regular season
   same(uiRow(app, 'period').hidden, false, 'a round keeps the shared period button visible');
   click(uiControl(app, 'period'));
   same(app.calendarOpen, true, 'the shared period button also opens the calendar from a round');
@@ -324,7 +324,7 @@ test('switching to a football league changes the period button to a week picker 
   same(app.view.period.id, 'd2026-11-12');
 });
 
-// ---------- 008002: one Regular season choice, one Date control ----------
+// ---------- one Regular season choice, one Date control ----------
 const DATED = /^d\d{4}-\d{2}-\d{2}$/;
 const periodPairs = (app) => uiOptions(app, 'period').map((o) => [o.value, o.textContent]);
 function pickDay(app, k) {

@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - geometry validators and model metrics.
+// WTFScore - geometry validators and model metrics.
 // Everything here is MODEL-COMPUTED from layout rectangles. None of it is a
 // browser or device measurement; the browser panel (measure.mjs) does that.
 
@@ -226,7 +226,7 @@ export function computeMetrics(layout, baseline = null) {
 
   let rowsMoved = 0;
   let selfJumps = 0;
-  // DA-04: cards after an expanded card should move down or right. Strict
+  // Followers: cards after an expanded card should move down or right. Strict
   // reading: no follower moves up or left at all. Lenient (literal) reading of
   // "their y or x does not decrease": fails only when both y and x decrease.
   const following = { down: 0, right: 0, same: 0, left: 0, upRight: 0, up: 0, upLeft: 0 };

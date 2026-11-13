@@ -110,7 +110,7 @@ test('violations: header outside the safe area is reported', () => {
 
 // ---------- metrics on engine output ----------
 
-test('DA-04 follower metric distinguishes strict and lenient readings', () => {
+test('follower metric distinguishes strict and lenient readings', () => {
   const items = [{ id: 'c1', stage: 1 }, { id: 'c2', stage: 1 }, { id: 'c3', stage: 1 }, { id: 'E', stage: 3 }, { id: 'c4', stage: 1 }, { id: 'c5', stage: 1 }];
   const vp = { w: 1280, h: 720 };
   const base = computeLayout({ items: items.map((i) => ({ ...i, stage: 1 })), viewport: vp, scale: 5, candidate: 'LC4' });

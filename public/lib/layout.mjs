@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - pure layout engine for candidates LC1 to LC4.
+// WTFScore - pure layout engine for candidates LC1 to LC4.
 // Input: game ids in display order with their stage. Output: model geometry
 // (CSS px) for every card and every stage section. The browser applies these
 // numbers as CSS geometry on stable, keyed DOM nodes; the metrics module checks
@@ -105,7 +105,7 @@ function makePlacement(item, x, y, width, d, extra) {
 }
 
 // Rows of cells -> placements. Cards in a row align to the top; the row is as
-// tall as its tallest card (plan 4.7, A-01 fix 4).
+// tall as its tallest card.
 function positionRows(rows, g, d, startY) {
   const placements = [];
   let y = startY;

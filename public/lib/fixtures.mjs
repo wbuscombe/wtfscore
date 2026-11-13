@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - deterministic synthetic week generator.
+// WTFScore - deterministic synthetic week generator.
 // Every team, player, network and play here is invented. No provider data.
 // The generator emits games in a seeded, shuffled order on purpose: the board
 // must sort them itself (kickoff, then game id) and never trust input order.
@@ -137,7 +137,7 @@ const GAME_ROWS = [
 ];
 
 // Snapshot sequences. FIXTURE DATA ONLY: the monotonic, gap and correction
-// guards that consume them belong to DEL-1 and are not implemented here.
+// guards that would consume them are not implemented in this prototype.
 const SNAPSHOT_ROWS = [
   { gameId: 'g11-149', seq: 1, at: '2026-11-15T21:40:10Z', period: 4, clock: '0:41', away: 24, home: 24, kind: 'normal' },
   { gameId: 'g11-149', seq: 2, at: '2026-11-15T21:40:40Z', period: 4, clock: '0:00', away: 24, home: 24, kind: 'normal' },
@@ -223,7 +223,7 @@ export function generateWeek({ seed = DEFAULT_SEED } = {}) {
   };
 }
 
-// Catalog of the contract's fixture cases. Tests check each claim against the
+// Catalog of the fixture cases the tests rely on. Tests check each claim against the
 // data itself rather than trusting this list.
 export const FIXTURE_CASES = Object.freeze({
   thursday: ['g11-104'],

@@ -12,6 +12,5 @@ node_modules/
 __pycache__/
 *.pyc
 *.log
-.dropboxignore
 # Review composites are CI artifacts, not gallery frames.
 docs/screenshots/contact-sheet.png

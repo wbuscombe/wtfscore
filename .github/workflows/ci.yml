@@ -42,7 +42,7 @@ jobs:
           from pathlib import Path
           import os,re
           text=(Path(os.environ['RUNNER_TEMP'])/'wtfscore-tests/stdout.log').read_text()
-          for label,value in [('tests',263),('pass',263),('fail',0),('cancelled',0),('skipped',0)]:
+          for label,value in [('tests',269),('pass',269),('fail',0),('cancelled',0),('skipped',0)]:
               assert re.search(r'^# '+label+r' '+str(value)+r'$',text,re.M), label
           PY
   gitleaks:

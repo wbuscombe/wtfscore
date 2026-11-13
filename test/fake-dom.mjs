@@ -4,11 +4,11 @@
 // hidden and inert subtrees (as the stylesheet's [hidden] rule and the inert
 // attribute do in a browser), and a window whose frames and timers are counted.
 // It is a model for behaviour tests, not a browser.
-// 008: a window may carry a fixed clock (new FakeWindow({ now })) so date
+// A window may carry a fixed clock (new FakeWindow({ now })) so date
 // anchoring is tested at chosen instants, never at the wall clock; events may
 // carry `detail` (0 for a click a key or remote produced); elements have a
 // scrollTop the TV details window moves.
-// 010: a window made with { blurOnMove: true } models the browser rule that an
+// A window made with { blurOnMove: true } models the browser rule that an
 // element moved out of and back into the document loses focus, so a reorder
 // must give focus back itself. Off by default: earlier tests keep their model.
 

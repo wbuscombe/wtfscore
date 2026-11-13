@@ -5,7 +5,7 @@
 // it and puts focus back on the same game. Up and Down only scroll the lower
 // part. Built with createElement and textContent only; the board decides when
 // it opens and where focus goes when it closes.
-// 010: the window's frame shows the same football cue as the game's card (a
+// The window's frame shows the same football cue as the game's card (a
 // priority colour, or a touchdown's green frame). It has no favorite control.
 
 import { buildScorecard, buildSituationPanel, buildLeaders, buildTeamStats, matchup, frameCue } from './render.mjs';

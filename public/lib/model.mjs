@@ -1,7 +1,7 @@
-// WTFScore DEL-0 - ordering, eligibility and expansion state. Pure module.
+// WTFScore - ordering, eligibility and expansion state. Pure module.
 
 // Status groups for the status sort: in progress, then upcoming, then final,
-// then anything else. The group order is a proposal (plan 4.4 [P]).
+// then anything else. The group order is a proposed default.
 export const STATUS_GROUP = Object.freeze({
   live: 0, halftime: 0, end_period: 0, delayed: 0, suspended: 0,
   scheduled: 1, postponed: 1,
@@ -29,7 +29,7 @@ export function notExpandableReason(game) {
 }
 
 export function kickoffKey(game) {
-  if (game.timeValid === false) return Number.POSITIVE_INFINITY; // TBD sorts last (plan 4.4)
+  if (game.timeValid === false) return Number.POSITIVE_INFINITY; // TBD sorts last
   const t = Date.parse(game.kickoff);
   return Number.isNaN(t) ? Number.POSITIVE_INFINITY : t;
 }
@@ -52,7 +52,7 @@ export function compareStatus(a, b) {
 }
 
 // sortGames returns a new array. In status mode, `pins` (Map id -> index)
-// holds expanded cards at their current position (CD-09): they do not move.
+// holds expanded cards at their current position: they do not move.
 export function sortGames(games, mode = 'kickoff', { pins = null } = {}) {
   const byKick = [...games].sort(compareKickoff);
   if (mode !== 'status') return byKick;
@@ -74,7 +74,7 @@ export function sortGames(games, mode = 'kickoff', { pins = null } = {}) {
   return slots;
 }
 
-// 010 football week board (NFL and NCAAF): favorite games first, then the
+// Football week board (NFL and NCAAF): favorite games first, then the
 // other games by status group (in progress, upcoming, final, other); inside
 // every group kickoff ascending (an unknown or TBD start last), then the stable
 // game id. Expanded cards hold no position here, and football has no Order
@@ -102,7 +102,7 @@ export function spreadPick(ids, k) {
   return out;
 }
 
-// Expansion state with least-recently-expanded collapse (CD-18).
+// Expansion state with least-recently-expanded collapse.
 export class ExpansionState {
   constructor({ games, cap = 3 }) {
     this.cap = clampCap(cap);
@@ -148,7 +148,7 @@ export class ExpansionState {
     return collapsed;
   }
 
-  // Select: stage 1 -> 2 -> 3 -> 1 (the wrap is plan 4.3 [P]).
+  // Select: stage 1 -> 2 -> 3 -> 1 (the wrap back to 1 is a proposed default).
   advance(id) {
     if (!this.isEligible(id)) return { ok: false, id, from: 1, to: 1, collapsed: [], reason: 'not-expandable' };
     const from = this.stageOf(id);
@@ -180,7 +180,7 @@ export class ExpansionState {
   }
 
   // Escape: step the focused card down; on a stage-1 card while others are
-  // expanded, step the most recently expanded card down (plan 4.3).
+  // expanded, step the most recently expanded card down.
   escape(focusedId) {
     if (this.stageOf(focusedId) > 1) return this.stepDown(focusedId);
     const mru = this.recency[this.recency.length - 1];

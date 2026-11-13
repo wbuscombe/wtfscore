@@ -4,11 +4,11 @@ import { uiChoose, uiControl, uiOptions, uiRow, uiValue } from './fake-dom.mjs';
 // text size, with several games open and after filter changes. Each expanded
 // game must take one whole row at its place in the chosen order. The
 // comparison is always against the same view with the same earlier-open
-// state. These are model geometry tests; actual Safari pixels are the parent's.
-// 008: opening in place is the Phone presentation. 390x844 stays on Auto (and
+// state. These are model geometry tests; actual Safari pixels are not checked here.
+// Opening in place is the Phone presentation. 390x844 stays on Auto (and
 // must resolve to Phone); the wide windows, where Auto picks TV, choose Phone
 // explicitly.
-// 010: games have no per-game More/Leaders button; each later step is another
+// Games have no per-game More/Leaders button; each later step is another
 // activation of the same score box (the whole-card path the button duplicated).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

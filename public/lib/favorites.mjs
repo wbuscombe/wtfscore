@@ -1,4 +1,4 @@
-// WTFScore 010 - football favorites for one Demo screen. Pure module, kept in
+// WTFScore - football favorites for one Demo screen. Pure module, kept in
 // memory only: a page reload starts with no favorites, like every other demo
 // setting. Team favorites are kept per league by stable team id (league and
 // abbreviation); a game can be explicitly included or excluded by its stable

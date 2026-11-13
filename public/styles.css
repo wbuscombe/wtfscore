@@ -131,7 +131,7 @@ body {
 .card.cue-subtle::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: calc(3px * var(--f)); background: var(--rz); pointer-events: none; z-index: 1; }
 .card.cue-strong::after { border-color: var(--live); }
 
-/* 010 football priority frame: one thick outer border in the one priority
+/* Football priority frame: one thick outer border in the one priority
    colour (red zone red; overtime or two-minute close game orange; five-minute
    close game yellow), drawn over the touchdown green. Keyboard focus adds its
    own light ring outside the frame, so focus and cue stay separately visible. */
@@ -146,7 +146,7 @@ body {
 .pop.prio:focus-visible { outline-offset: -7px; }
 .pop.td-frame { border-color: var(--live); }
 
-/* 010 favorite star (football cards): a 44 x 44 CSS px toggle in the card's
+/* Favorite star (football cards): a 44 x 44 CSS px toggle in the card's
    top right corner; the glyph says the state, the label and pressed state say
    it to assistive technology. */
 .fav {

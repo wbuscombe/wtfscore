@@ -2,11 +2,11 @@ import { uiChoose, uiControl, uiOptions, uiRow, uiLabel, uiValue } from './fake-
 // The Menu drives the real controller: every dropdown is changed through a
 // change event on its native <select>, and each test asserts the state and the
 // rendered board that result. Fake-DOM model tests, not browser evidence.
-// 008: the board here is the Phone presentation (one test opens a game in
+// The board here is the Phone presentation (one test opens a game in
 // place); the Sport row, the Date row and the Presentation row are new, and
 // the League dropdown lists the leagues of the chosen sport. Sport and
 // calendar transitions are tested at the end of this file and in calendar.test.mjs.
-// 008002: a daily league's Period dropdown holds one Regular season choice and
+// A daily league's Period dropdown holds one Regular season choice and
 // the named rounds; its dates are chosen with the Date control (the calendar),
 // so a step to a date goes through that control, and the reveal-order observer
 // watches the Date row too.
@@ -57,7 +57,7 @@ test('League: each of the seven leagues replaces the board with its own namespac
     same(articles(app).length, app.cards.size);
     same(app.expansion.count(), 0);
     assert.deepEqual(shownRows(app).filter((k) => !['sport', 'league', 'season', 'period', 'date', 'favorites', 'textSize', 'order', 'openLimit', 'zone', 'badges', 'presentation', 'screen'].includes(k)), rows[l.id], l.id);
-    // 010: Favorite teams only for football, and football has no Order choice.
+    // Favorite teams only for football, and football has no Order choice.
     same(uiRow(app, 'favorites').hidden, l.sport !== 'football', `${l.id}: Favorite teams only for football`);
     same(uiRow(app, 'order').hidden, l.sport === 'football', `${l.id}: Order for every sport but football`);
     same(uiControl(app, 'period').getAttribute('aria-haspopup'), l.periodKind === 'date' ? 'dialog' : 'listbox', `${l.id}: period opens the appropriate picker`);
@@ -86,7 +86,7 @@ test('Season and period dropdowns change the visible games and the header; posts
   }
   assert.deepEqual(labels(app, 'period'), ['Week 10', 'Week 11', 'Week 12', 'Wild Card round', 'Divisional round', 'Conference championships', 'Championship game']);
   choose(app, 'league', 'nba');
-  // 008002: no dated slates in Period; the simulated current date is the Date control's
+  // No dated slates in Period; the simulated current date is the Date control's
   same(uiLabel(app, 'period').textContent, 'Date or round');
   assert.deepEqual(labels(app, 'period').slice(0, 3), ['Regular season', 'Play-in tournament', 'First round']);
   same(uiValue(app, 'period'), REGULAR_CHOICE);
@@ -100,7 +100,7 @@ test('every visible filter option, in every league, changes the board to exactly
   for (const l of LEAGUES) {
     choose(app, 'league', l.id);
     const periods = values(app, 'period');
-    // 008002: a daily league's periods[0] is Regular season, on the simulated current date (formerly its periods[1])
+    // A daily league's periods[0] is Regular season, on the simulated current date (formerly its periods[1])
     for (const p of [l.periodKind === 'date' ? periods[0] : periods[1], periods[periods.length - 1]]) {
       choose(app, 'period', p);
       for (const key of shownRows(app).filter((k) => ['conference', 'subleague', 'subdivision', 'division', 'ranking', 'tournament', 'round'].includes(k))) {
@@ -219,7 +219,7 @@ test('display settings each change the board: text size, order, games open at on
   choose(app, 'zone', 'UTC');
   assert.match(app.cards.get(pre.id).status.textContent, /^Mon 1:20\sAM$/);
   same(app.view.period.id, 'w11', 'a week holds its games in any zone');
-  // 010: Order still changes a non-football board.
+  // Order still changes a non-football board.
   choose(app, 'league', 'nba');
   choose(app, 'order', 'status');
   same(app.settings.order, 'status');
@@ -230,7 +230,7 @@ test('display settings each change the board: text size, order, games open at on
 test('time zone changes date membership for date leagues: a late game moves to its local date; open games that stay remain open', () => {
   const { app } = setup();
   choose(app, 'league', 'nba');
-  pickDay(app, '2026-11-14'); // 008002: dates are chosen in the calendar
+  pickDay(app, '2026-11-14'); // dates are chosen in the calendar
   const late = app.view.games.find((g) => g.kickoff === '2026-11-15T05:00:00Z');
   assert.ok(late, 'Sat 11:00 PM Central game on Saturday in Central');
   app.closeMenu();
@@ -369,7 +369,7 @@ const kindOf = (p) => (p.phase === 'regular' ? 'regular' : p.tournaments && p.to
 const pairText = (list) => list.map((o) => `${o[0]}=${o[1]}`).join('|');
 const firstSeasonPeriods = (leagueId) => cat.periods(leagueId, cat.seasons(leagueId)[0].id, 'America/Chicago');
 
-// 008002: the Date control is observed too. When its row turns visible it must
+// The Date control is observed too. When its row turns visible it must
 // already hold its label and the view's chosen date, with Period on Regular season.
 function dateProblems(app) {
   const v = app.view;
@@ -405,7 +405,7 @@ function chooseDay(app, id) {
   return uiControl(app, 'period');
 }
 
-// 010: Favorite teams (football only) and Order (every sport but football) are
+// Favorite teams (football only) and Order (every sport but football) are
 // observed too: shown only in their own context and already filled.
 const FOOTBALL = ['nfl', 'ncaaf'];
 function rowProblems(app, key) {
@@ -654,7 +654,7 @@ test('Menu reveal order 4/4: named paths: NBA to MLB to NFL, out and back, colle
   report(t, rec, 'named paths');
 });
 
-// ---------- 008: Sport -> League, with a fixed clock ----------
+// ---------- Sport -> League, with a fixed clock ----------
 const CLOCK = Date.parse('2026-11-12T20:30:00Z'); // Thu Nov 12, 2:30 PM Central
 const SPORT_OF = { nfl: 'football', ncaaf: 'football', nba: 'basketball', ncaab: 'basketball', ncaaw: 'basketball', mlb: 'baseball', nhl: 'hockey' };
 const FIRST_OF = { football: 'nfl', basketball: 'nba', baseball: 'mlb', hockey: 'nhl' };
@@ -669,7 +669,7 @@ function clockBoard() {
   // every new or filter row that turns visible must already be filled for the current view
   const check = (key) => {
     const v = app.view;
-    if (key === 'date') return v.daily ? dateProblems(app) : [`date button shown for ${v.league.id} ${v.period.id}`]; // 008002: a regular-season date only, already filled
+    if (key === 'date') return v.daily ? dateProblems(app) : [`date button shown for ${v.league.id} ${v.period.id}`]; // a regular-season date only, already filled
     return rowProblems(app, key);
   };
   for (const key of FILTER_KEYS) {
@@ -770,7 +770,7 @@ test('both college tournament paths through League: Basketball, NCAAB or NCAAW, 
       assert.deepEqual(go(run, k, v), [], `${l} ${k} ${v}`);
       if (k === 'round' && v === 's16') assert.ok(app.view.games.length === 4 && app.view.games.every((g) => g.round === 's16' && g.tournament === 'ncaa'));
       if (k === 'round' && v === 'inv-qf') assert.ok(app.view.games.length > 0 && app.view.games.every((g) => g.tournament === 'inv'));
-      if (k === 'period') assert.ok(!uiRow(app, 'period').hidden && app.header.calendar.root.hidden && !app.calendarOpen, 'round keeps the shared period button reachable and closes the calendar'); // 008002
+      if (k === 'period') assert.ok(!uiRow(app, 'period').hidden && app.header.calendar.root.hidden && !app.calendarOpen, 'round keeps the shared period button reachable and closes the calendar');
     }
     same(app.view.league.id, 'nfl');
     same(app.view.period.id, 'w11');
@@ -779,7 +779,7 @@ test('both college tournament paths through League: Basketball, NCAAB or NCAAW, 
   }
 });
 
-// ---------- 008002 (E1): the Date control in the reveal-order observer ----------
+// ---------- the Date control in the reveal-order observer ----------
 test('Menu reveal order, Date control: every Regular season <-> named round switch in all five daily leagues and every season fills the Date label and chosen date after the foreground period updates, keeps the same control and focus, and returns to the chosen date', (t) => {
   const rec = [];
   for (const l of DAILY_LEAGUES) {
@@ -814,7 +814,7 @@ test('Menu reveal order, Date control: every Regular season <-> named round swit
   report(t, rec, 'Date control Regular season <-> round');
 });
 
-// 011: history is kept until the case has checked it, then explicitly released.
+// History is kept until the case has checked it, then explicitly released.
 test('fake DOM case cleanup releases detached history while preserving connected controls, identity, listeners and all DOM content', () => {
   const doc = new FakeDocument();
   const control = doc.createElement('button');

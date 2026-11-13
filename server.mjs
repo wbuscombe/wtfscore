@@ -1,4 +1,4 @@
-// WTFScore DEL-0 - local preview server.
+// WTFScore - local preview server.
 // Serves ./public read-only on 127.0.0.1:4317 only. No writes, no outbound
 // calls, no dependencies. Run: node server.mjs
 

@@ -313,7 +313,7 @@ test('a resize across the TV rule or a Presentation change closes what was open 
   same(JSON.stringify(app.view.view), view, 'the schedule and filters are kept');
   same(app.settings.zone, 'America/New_York');
   click(scoreBox(app, ids[1]));
-  click(scoreBox(app, ids[1])); // 010: the next step is the score box again
+  click(scoreBox(app, ids[1])); // the next step is the score box again
   same(app.expansion.stageOf(ids[1]), 3, 'Phone opens in place');
   const inner = app.cards.get(ids[1]).sections[2].byClass('sbtn')[0];
   inner.focus();

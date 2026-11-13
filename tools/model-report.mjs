@@ -1,5 +1,5 @@
 // WTFScore - reproducible MODEL measurement export.
-// Writes the full contract matrix (4 candidates x 5 viewports x scales 1-10 x
+// Writes the full comparison matrix (4 candidates x 5 viewports x scales 1-10 x
 // 0-6 expanded) as JSON to a NEW file (exclusive create) and prints a summary.
 // Model-computed only; never browser or device evidence.
 //
