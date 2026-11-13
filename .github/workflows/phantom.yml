@@ -68,14 +68,18 @@ jobs:
           target.write_bytes((root/'result/manifest.json').read_bytes())
           PYCODE
       - name: Record applied capture limits and teardown
+        if: always()
         run: |
           python3 - <<'PYCODE'
           import os,json
           from pathlib import Path
           root=Path(os.environ['RUNNER_TEMP'])
           for folder in ['wtfscore-hero','wtfscore-gallery','wtfscore-verify']:
-              for name in ['unit-proof.json','bounded-result.json']:
-                  print(json.dumps(json.loads((root/folder/name).read_text()),sort_keys=True))
+              for name in ['unit-proof.json','bounded-result.json','kernel-exit.json','capture/result.json']:
+                  path=root/folder/name
+                  if path.is_file():
+                      print(folder+'/'+name)
+                      print(json.dumps(json.loads(path.read_text()),sort_keys=True))
           PYCODE
       - name: Require a small, complete artifact
         run: |
@@ -83,6 +87,7 @@ jobs:
           from pathlib import Path
           files=list(Path('docs/screenshots').rglob('*'))
           assert sum(p.stat().st_size for p in files if p.is_file()) < 100*1024*1024
+          assert all(p.stat().st_size <= 8*1024*1024 for p in files if p.suffix == '.png')
           PYCODE
       - name: Publish the verified review artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -158,13 +158,19 @@ def unit_guard(args):
     quota, period = checks["cpu.max"].split()
     if quota == "max" or int(quota) > int(period):
         raise RuntimeError("CPU limit was not applied")
-    fields = ["NoNewPrivileges", "PrivateNetwork", "PrivateTmp", "PrivateUsers", "ProtectSystem", "ProtectHome", "Restart", "OOMPolicy", "KillMode", "RuntimeMaxUSec"]
+    import resource
+    file_limit = int(os.environ["WTS_FILE_MAX"])
+    if resource.getrlimit(resource.RLIMIT_FSIZE) != (file_limit, file_limit):
+        raise RuntimeError("Process file limit was not applied")
+    fields = ["LimitFSIZE", "NoNewPrivileges", "PrivateNetwork", "PrivateTmp", "PrivateUsers", "ProtectSystem", "ProtectHome", "Restart", "OOMPolicy", "KillMode", "RuntimeMaxUSec"]
     result = subprocess.check_output(["systemctl", "show", unit] + ["--property=" + name for name in fields], text=True)
     applied = dict(line.split("=", 1) for line in result.splitlines() if "=" in line)
     expected = {"NoNewPrivileges": "yes", "PrivateNetwork": "yes", "PrivateTmp": "yes", "PrivateUsers": "yes", "ProtectSystem": "strict", "ProtectHome": "read-only", "Restart": "no", "OOMPolicy": "kill", "KillMode": "control-group"}
     if any(applied.get(key) != value for key, value in expected.items()) or applied.get("RuntimeMaxUSec") not in ("5min", "5min 0", "300000000"):
         raise RuntimeError("Application sandbox properties were not applied")
-    proof = {"unit": unit, "cgroup": str(cgroup), "kernel": checks, "properties": applied, "uid": os.getuid()}
+    if applied.get("LimitFSIZE") != str(file_limit):
+        raise RuntimeError("Systemd file limit was not applied")
+    proof = {"file_limit_bytes": file_limit, "unit": unit, "cgroup": str(cgroup), "kernel": checks, "properties": applied, "uid": os.getuid()}
     with (Path(args.work) / "unit-proof.json").open("x") as handle:
         json.dump(proof, handle, indent=2)
     print("Kernel limits and isolation verified before application launch", flush=True)
@@ -182,13 +188,14 @@ def bounded(args):
     output.mkdir(parents=True, exist_ok=True)
     kind = args.bounded
     memory, tasks = (805306368, 64) if kind == "test" else (1610612736, 128)
+    file_limit = 8388608 if kind == "test" else 33554432
     identity = os.environ.get("GITHUB_RUN_ID", "manual") + "-" + os.environ.get("GITHUB_RUN_ATTEMPT", "1") + "-" + str(os.getpid())
     unit = "wtfscore-" + kind + "-" + identity + ".service"
     script = project / "tools" / "capture-showcase.py"
     environment = {
         "PATH": os.environ["PATH"], "TMPDIR": str(root / "tmp"),
         "OPENBLAS_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1",
-        "XDG_CACHE_HOME": str(root / "cache"), "WTS_GUARDED_UNIT": unit, "WTS_MEMORY_MAX": str(memory), "WTS_TASKS_MAX": str(tasks),
+        "XDG_CACHE_HOME": str(root / "cache"), "WTS_GUARDED_UNIT": unit, "WTS_MEMORY_MAX": str(memory), "WTS_TASKS_MAX": str(tasks), "WTS_FILE_MAX": str(file_limit),
     }
     for name in ("PLAYWRIGHT_BROWSERS_PATH", "GITHUB_SHA", "GITHUB_REPOSITORY", "GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT"):
         if name in os.environ:
@@ -207,7 +214,7 @@ def bounded(args):
     properties = {
         "WorkingDirectory": str(project), "MemoryMax": str(memory), "MemorySwapMax": "0", "TasksMax": str(tasks),
         "CPUQuota": "100%", "Nice": "19", "RuntimeMaxSec": "300", "TimeoutStopSec": "3", "Restart": "no", "OOMPolicy": "kill", "KillMode": "control-group",
-        "PrivateUsers": "yes", "PrivateNetwork": "yes", "PrivateTmp": "yes", "NoNewPrivileges": "yes", "ProtectSystem": "strict", "ProtectHome": "read-only", "LimitFSIZE": "8388608",
+        "PrivateUsers": "yes", "PrivateNetwork": "yes", "PrivateTmp": "yes", "NoNewPrivileges": "yes", "ProtectSystem": "strict", "ProtectHome": "read-only", "LimitFSIZE": str(file_limit),
         "ReadWritePaths": str(root) + " " + str(output),
         "BindReadOnlyPaths": str(project / "public") + " " + str(project / "test"),
         "ExecStartPre": sys.executable + " " + str(script) + " --verify-unit --work " + str(root),
@@ -280,6 +287,13 @@ def main() -> int:
         return bounded(args)
     if not args.inside_unit or not os.environ.get("WTS_GUARDED_UNIT"):
         parser.error("Use --bounded capture so kernel guards are verified first")
+    import atexit
+    def record_exit_limits():
+        cgroup = Path("/sys/fs/cgroup") / Path("/proc/self/cgroup").read_text().strip().split("::", 1)[1].lstrip("/")
+        values = {name: (cgroup / name).read_text().strip() for name in ("memory.events", "memory.peak") if (cgroup / name).exists()}
+        with (Path(args.work).parent / "kernel-exit.json").open("x") as handle:
+            json.dump(values, handle, indent=2)
+    atexit.register(record_exit_limits)
     return asyncio.run(run(args))
 
 

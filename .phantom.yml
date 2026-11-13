@@ -250,7 +250,7 @@ captures:
         selector: "[aria-label=\"Close menu\"]"
       -
         type: "click"
-        selector: ".card[data-id=\"g11-149\"] .fav"
+        selector: ".card[data-id=\"nfl-2026-g11-149\"] .fav"
       -
         type: "press"
         key: "Control+Home"
@@ -291,7 +291,7 @@ captures:
         selector: "#header-period-options [data-value=\"2026|w11\"]"
       -
         type: "click"
-        selector: ".card[data-id=\"g11-183\"] .sec1"
+        selector: ".card[data-id=\"nfl-2026-g11-183\"] .sec1"
       -
         type: "press"
         key: "Control+Home"
@@ -332,7 +332,7 @@ captures:
         selector: "#header-period-options [data-value=\"2026|w11\"]"
       -
         type: "click"
-        selector: ".card[data-id=\"g11-183\"] .sec1"
+        selector: ".card[data-id=\"nfl-2026-g11-183\"] .sec1"
       -
         type: "press"
         key: "ArrowRight"
@@ -376,7 +376,7 @@ captures:
         selector: "#header-period-options [data-value=\"2026|w11\"]"
       -
         type: "click"
-        selector: ".card[data-id=\"g11-183\"] .sec1"
+        selector: ".card[data-id=\"nfl-2026-g11-183\"] .sec1"
       -
         type: "press"
         key: "ArrowRight"
@@ -708,7 +708,7 @@ captures:
         selector: "#header-period-options [data-value=\"2026|w11\"]"
       -
         type: "click"
-        selector: ".card[data-id=\"g11-149\"] .sec1"
+        selector: ".card[data-id=\"nfl-2026-g11-149\"] .sec1"
       -
         type: "press"
         key: "Control+Home"
@@ -717,7 +717,7 @@ captures:
         ms: 1000
       -
         type: "evaluate"
-        js: "() => {\n const visible = e => Boolean(e && !e.hidden && e.getClientRects().length);\n const header = document.querySelector('#head');\n const sim = document.querySelector('.head-sim');\n const hr = header.getBoundingClientRect(), sr = sim.getBoundingClientRect();\n if (!visible(sim) || sr.top < 0 || sr.bottom > innerHeight || !sim.textContent.includes('SIMULATED')) throw Error('Simulation marker outside frame');\n const league = document.querySelector('#header-league').textContent;\n if (!league.includes(\"NFL\")) throw Error('Wrong league');\n if(Date.now()!==Date.parse('2026-11-15T21:50:00Z')) throw Error('Capture clock mismatch');\n const cards = [...document.querySelectorAll('.card')];\n if (!cards.length || !(document.querySelector('.card[data-id=\"g11-149\"]').dataset.stage==='2')) throw Error('Required UI state missing');\n const favorite = cards.map(c=>c.classList.contains('fav-on'));\n let otherSeen=false; for(const value of favorite){ if(!value) otherSeen=true; else if(otherSeen) throw Error('Favorite order violated'); }\n const state = {id:\"15-phone-inline\",league,period:document.querySelector('#header-period').textContent,filters:[...document.querySelectorAll('.header-choice')].filter(visible).map(r=>r.innerText),card_count:cards.length,visible_cards:cards.filter(c=>{const r=c.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}).length,favorites:cards.filter(c=>c.classList.contains('fav-on')).map(c=>c.dataset.id),header_height:hr.height,simulation_text_in_dom:true,app_simulation_exposed:(()=>{const e=document.elementFromPoint(sr.left+sr.width/2,sr.top+sr.height/2);return e===sim||sim.contains(e);})(),viewport:[innerWidth,innerHeight],details:document.querySelector('#details:not([hidden])')?.innerText||null,expected_ocr:[\"NFL\", \"SIMULATED\"]};\n console.info('WTFScore capture evidence: '+JSON.stringify(state));\n }"
+        js: "() => {\n const visible = e => Boolean(e && !e.hidden && e.getClientRects().length);\n const header = document.querySelector('#head');\n const sim = document.querySelector('.head-sim');\n const hr = header.getBoundingClientRect(), sr = sim.getBoundingClientRect();\n if (!visible(sim) || sr.top < 0 || sr.bottom > innerHeight || !sim.textContent.includes('SIMULATED')) throw Error('Simulation marker outside frame');\n const league = document.querySelector('#header-league').textContent;\n if (!league.includes(\"NFL\")) throw Error('Wrong league');\n if(Date.now()!==Date.parse('2026-11-15T21:50:00Z')) throw Error('Capture clock mismatch');\n const cards = [...document.querySelectorAll('.card')];\n if (!cards.length || !(document.querySelector('.card[data-id=\"nfl-2026-g11-149\"]').dataset.stage==='2')) throw Error('Required UI state missing');\n const favorite = cards.map(c=>c.classList.contains('fav-on'));\n let otherSeen=false; for(const value of favorite){ if(!value) otherSeen=true; else if(otherSeen) throw Error('Favorite order violated'); }\n const state = {id:\"15-phone-inline\",league,period:document.querySelector('#header-period').textContent,filters:[...document.querySelectorAll('.header-choice')].filter(visible).map(r=>r.innerText),card_count:cards.length,visible_cards:cards.filter(c=>{const r=c.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}).length,favorites:cards.filter(c=>c.classList.contains('fav-on')).map(c=>c.dataset.id),header_height:hr.height,simulation_text_in_dom:true,app_simulation_exposed:(()=>{const e=document.elementFromPoint(sr.left+sr.width/2,sr.top+sr.height/2);return e===sim||sim.contains(e);})(),viewport:[innerWidth,innerHeight],details:document.querySelector('#details:not([hidden])')?.innerText||null,expected_ocr:[\"NFL\", \"SIMULATED\"]};\n console.info('WTFScore capture evidence: '+JSON.stringify(state));\n }"
   -
     id: "16-phone-ncaaw"
     name: "NCAAW board at phone width"
