@@ -146,7 +146,7 @@ test('visible compact count matches an independent count of fully visible rows',
   assert.equal(m.visibleCompact, 9);
 });
 
-test('contract matrix covers 5 viewports x 10 scales x 4 candidates x 0-6 expanded', () => {
+test('comparison matrix covers 5 viewports x 10 scales x 4 candidates x 0-6 expanded', () => {
   const mx = contractMatrix(games);
   assert.equal(mx.rows.length, 5 * 10 * 4 * 7);
   assert.ok(mx.rows.every((r) => r.label === MODEL_LABEL));

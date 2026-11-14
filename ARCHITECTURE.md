@@ -11,7 +11,7 @@ WTFScore is a static frontend demo. `public/app.mjs` mounts `lib/board.mjs`. The
 | Game view | render, popup | Scorecards, inline details and the TV foreground carousel |
 | Interaction | nav, favorites, model | Directional focus, team defaults, per-game favorite overrides, ordering and expansion state |
 | Diagnostics | diag | Developer readout, created only when the page address carries `devdiag=1` |
-| Developer only | metrics, measure, presets, g1 | Layout comparison metrics, browser measurement helpers, model viewport presets and the layout decision sheet; used by Node tests and tools, never loaded by the page |
+| Developer only | metrics, measure, presets, g1 | Layout comparison metrics, model viewport presets and the layout decision sheet (metrics, presets, g1), used by Node tests or tools; browser measurement helpers (measure) that nothing currently imports; the page loads none of them |
 | Server | server.mjs | Read-only static files, loopback bind, host checks and security headers |
 
 The entry module is `public/app.mjs`, the other page and developer modules are in `public/lib/`, and `server.mjs` is at the repository root. Two tests keep the developer-only modules out of the page: `test/static.test.mjs` follows the page's static imports, and `test/module-graph.test.mjs` records the modules the controller actually loads.

@@ -62,6 +62,8 @@ node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=120000 
 
 The suite has 269 tests. Six of them are publication hygiene checks that fail if a tracked file gains a local user path, a private IPv4 address, an email address, a planning label in a code comment or test title, or an em dash in Markdown. `node tools/publication-hygiene.mjs` runs the same scan on its own.
 
+The tests also require Git and must run from a Git clone. The six publication hygiene checks list tracked files with Git, so they fail in a source archive that has no Git metadata. The app itself does not need Git to run.
+
 The [CI workflow](https://github.com/wbuscombe/wtfscore/actions/workflows/ci.yml) runs the suite inside a bounded Linux sandbox and requires all 269 tests to pass with no failures, cancellations or skips. A separate job runs a checksum-pinned gitleaks scan of the full history, which must first detect a planted canary. See [validation details](docs/VALIDATION.md) for the limits and capture checks.
 
 ## Gallery provenance

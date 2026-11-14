@@ -115,7 +115,7 @@ test('email: real-looking addresses are found; reserved example domains and the 
   assert.deepEqual(trackedFindings('email').findings, []);
 });
 
-test('comment planning identifiers: work-item codes, sequence numbers, gate labels and plan sections in comments are found; the same text in strings and legitimate names pass; tracked files have none', () => {
+test('comment planning identifiers: work-item codes, sequence numbers, one-letter labels and plan sections in comments are found; the same text in strings and legitimate names pass; tracked files have none', () => {
   const code = j('AB', 'C-', '12');
   const seq = j('0', '07');
   const gate = j('G', '3');

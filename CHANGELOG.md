@@ -4,7 +4,7 @@ All notable changes to this project are documented here. This file follows Keep 
 
 ## [Unreleased]
 
-## [0.1.1] - 2026-11-13
+## [0.1.1] - 2026-11-14
 
 ### Added
 
@@ -15,7 +15,7 @@ All notable changes to this project are documented here. This file follows Keep 
 
 - Code comments and test titles describe behavior instead of internal planning labels. Test assertions and app behavior are unchanged.
 - The CI test-count check expects 269 tests.
-- README, VALIDATION, SHOWCASE and CAPTURE-COVERAGE describe where the gallery was captured and link CI at the workflow level.
+- README, VALIDATION, SHOWCASE and CAPTURE-COVERAGE describe where the gallery was captured and link CI at the workflow level. SECURITY-PRACTICES describes what the repository tracks and the publication hygiene tests.
 
 ### Removed
 

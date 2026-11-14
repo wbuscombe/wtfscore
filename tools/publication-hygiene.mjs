@@ -7,6 +7,18 @@
 // Comment and title checks use a small lexer, so the same identifiers inside
 // string literals, regular expressions or code are not treated as comments.
 //
+// Limits: comments are read only in JavaScript, CSS, HTML, Python and YAML
+// files. Python docstrings, HTML comments in Markdown, shell comments inside
+// YAML block scalars and comments in dotfiles without one of those extensions,
+// such as .gitignore and .editorconfig, are not read. Test titles are read
+// only from a string or template literal passed straight to a bare test()
+// call. Titles given to describe(), it() or t.test(), or held in a variable,
+// are not checked; for a title joined with +, only the first literal part is.
+// The lexer tells a regular expression from division by looking only at the
+// token before the slash, a heuristic that fits this repository's modules.
+// To scan another file type, extend commentsFor; to change what counts as a
+// planning identifier, edit PLANNING_ID.
+//
 // Usage: node tools/publication-hygiene.mjs
 // Lists the files Git tracks in this checkout and scans them.
 // Exit status: 0 clean, 1 findings, 2 the tracked-file list failed validation.
@@ -50,7 +62,7 @@ const EMAIL_ALLOWED_DOMAIN = /(?:^|\.)(?:example\.(?:com|org|net)|example|test|i
 
 // Planning identifiers: work-item codes (one to four capitals, a hyphen and a
 // number), zero-padded sequence numbers of three or six digits, one-letter
-// gate labels (C, G or K and a digit) and numbered plan-section references.
+// labels (C, G or K followed by a digit) and numbered plan-section references.
 // Standards names with the work-item shape are allowed.
 const PLANNING_ID = new RegExp([
   '(?<![\\w-])[A-Z]{1,4}-\\d{1,3}(?![\\w-])',

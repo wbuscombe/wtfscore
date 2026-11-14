@@ -14,7 +14,7 @@ function fmt(v) {
   return v.slice(0, 4).map((x) => `${x.kind}: ${x.detail}`).join(' | ');
 }
 
-test('every candidate x contract viewport x 0-6 expanded x scale 1-10 holds all invariants', () => {
+test('every candidate x comparison viewport x 0-6 expanded x scale 1-10 holds all invariants', () => {
   let runs = 0;
   for (const vp of CONTRACT_VIEWPORTS) {
     for (const scale of SCALES) {
