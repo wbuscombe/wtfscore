@@ -45,11 +45,11 @@ async def calendar(browser, output, width, height):
     for _ in range(5):
         await page.keyboard.press('ArrowDown')
     moved = await page.evaluate(RECTS)
-    focused = await page.evaluate("""() => {const r=document.activeElement.getBoundingClientRect(),s=document.querySelector('.cal-scroll').getBoundingClientRect();return {day:document.activeElement.classList.contains('cal-day'),visible:r.top>=s.top-1&&r.bottom<=s.bottom+1};}""")
+    focused = await page.evaluate("""() => {const r=document.activeElement.getBoundingClientRect(),s=document.querySelector('.cal-scroll').getBoundingClientRect();return {day:document.activeElement.classList.contains('cal-day'),visible:r.top>=s.top-1&&r.bottom<=s.bottom+1,needsScroll:r.bottom+document.querySelector('.cal-scroll').scrollTop>s.bottom+1};}""")
     assert focused['day'] and focused['visible'], focused
     assert moved['panelScroll'] == 0 and moved['bodyScroll'] == before['bodyScroll'], moved
     assert moved['today'] == before['today'] and moved['hit'], moved
-    if before['gridScrollable']:
+    if focused['needsScroll']:
         assert moved['gridScroll'] > 0, moved
     await page.keyboard.press('Tab')
     assert await page.locator('.cal-today').evaluate('(e)=>e===document.activeElement')
@@ -65,9 +65,21 @@ async def calendar(browser, output, width, height):
     assert await page.locator('#header-period-panel').is_hidden()
     await page.locator('#header-period').click()
     await page.screenshot(path=str(output/f'calendar-{width}x{height}.png'))
+    for _ in range(5):
+        await page.keyboard.press('Shift+Tab')
+        if await page.evaluate("()=>!!document.activeElement.closest('.header-phases')"):
+            break
+    phase = await page.evaluate("""() => {
+      const e=document.activeElement,p=document.querySelector('#header-period-panel .header-phases');
+      if(!p||!p.contains(e))return {inPhases:false};
+      const r=e.getBoundingClientRect(),b=p.getBoundingClientRect();
+      const h=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
+      return {inPhases:true,text:e.textContent,visible:r.top>=b.top-1&&r.bottom<=b.bottom+1,hit:!!h&&e.contains(h)};
+    }""")
+    assert phase['inPhases'] and phase['visible'] and phase['hit'], (width,height,phase)
     assert not errors, errors
     await page.close()
-    return {'viewport':[width,height],'text_size':'largest','before':before,'after_keyboard':moved,'focused_day':focused,'keyboard_today':True,'pointer_today':True,'escape_focus_return':True}
+    return {'viewport':[width,height],'text_size':'largest','before':before,'after_keyboard':moved,'focused_day':focused,'keyboard_today':True,'pointer_today':True,'escape_focus_return':True,'phase_keyboard':phase}
 
 async def frames(browser, output):
     page = await browser.new_page(viewport={'width':1920,'height':1080})

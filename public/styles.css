@@ -79,7 +79,7 @@ body {
 .header-option[aria-selected="true"] { border-color: var(--line-strong); }
 .header-group-label { font: inherit; color: var(--muted); padding: 8px 10px; margin: 0; }
 .header-period-panel { display: flex; flex-direction: column; width: min(400px, 90vw); padding: 4px; overflow: hidden; }
-.header-phases { flex: 0 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+.header-phases { flex: 0 3 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; }
 .header-period-panel .cal { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; margin: 0; padding: 2px; }
 .header-period-panel .cal-head, .header-period-panel .cal-foot, .header-period-panel .mnote { flex: 0 0 auto; }
 .header-period-panel .cal-scroll { min-height: 0; overflow: auto; overscroll-behavior: contain; }
