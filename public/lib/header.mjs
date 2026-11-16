@@ -45,12 +45,14 @@ export function buildGameControls(doc, root, menuBtn) {
     panel.style.setProperty('max-height', `${box.maxHeight}px`);
   }
   function revealInPanel(node) {
-    if (!node || !node.getBoundingClientRect || !periodPanel.getBoundingClientRect) return;
-    const box = periodPanel.getBoundingClientRect(), r = node.getBoundingClientRect();
-    if (r.top < box.top + 6) periodPanel.scrollTop += r.top - box.top - 6;
-    else if (r.bottom > box.bottom - 6) periodPanel.scrollTop += r.bottom - box.bottom + 6;
-    if (r.left < box.left + 6) periodPanel.scrollLeft = (periodPanel.scrollLeft || 0) + r.left - box.left - 6;
-    else if (r.right > box.right - 6) periodPanel.scrollLeft = (periodPanel.scrollLeft || 0) + r.right - box.right + 6;
+    if (!node) return;
+    const scroll = calendar.grid.contains(node) ? calendar.scroll : phases.contains(node) ? phases : null;
+    if (!scroll || !node.getBoundingClientRect || !scroll.getBoundingClientRect) return;
+    const box = scroll.getBoundingClientRect(), r = node.getBoundingClientRect();
+    if (r.top < box.top + 6) scroll.scrollTop += r.top - box.top - 6;
+    else if (r.bottom > box.bottom - 6) scroll.scrollTop += r.bottom - box.bottom + 6;
+    if (r.left < box.left + 6) scroll.scrollLeft = (scroll.scrollLeft || 0) + r.left - box.left - 6;
+    else if (r.right > box.right - 6) scroll.scrollLeft = (scroll.scrollLeft || 0) + r.right - box.right + 6;
   }
   function close(refocus = true) {
     const p = opened;

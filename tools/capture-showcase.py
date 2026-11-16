@@ -207,6 +207,8 @@ def bounded(args):
         if not args.manifest or not args.output or not args.contact_sheet:
             raise RuntimeError("Verification paths are required")
         command = [sys.executable, str(project / "tools" / "verify-showcase.py"), "--manifest", args.manifest, "--output", args.output, "--contact-sheet", args.contact_sheet]
+    elif kind == "polish":
+        command = [sys.executable, str(project / "tools" / "check-ui-polish.py"), "--work", str(root / "checks")]
     else:
         command = [sys.executable, str(script), "--inside-unit", "--project", str(project), "--work", str(root / "capture")]
         if args.capture:
@@ -270,7 +272,7 @@ def bounded(args):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", default=".")
-    parser.add_argument("--bounded", choices=["test", "capture", "verify"])
+    parser.add_argument("--bounded", choices=["test", "capture", "verify", "polish"])
     parser.add_argument("--manifest")
     parser.add_argument("--output")
     parser.add_argument("--contact-sheet")

@@ -4,6 +4,19 @@ All notable changes to this project are documented here. This file follows Keep 
 
 ## [Unreleased]
 
+### Fixed
+
+- Pointer hover preserves football priority borders and green scoring-event frames, including keyboard focus and text cues.
+- The calendar date grid scrolls independently so Today stays visible and usable without scrolling the outer panel.
+
+### Added
+
+- Bounded Chromium checks and separate review artifacts for five hover-frame cases and four calendar viewport sizes at the largest text setting. The behavioral and hygiene suite remains 269 tests; calendar focus regression assertions now target the date grid.
+
+### Changed
+
+- Validation notes distinguish the unchanged historical v0.1.1 gallery from current UI regression evidence.
+
 ## [0.1.1] - 2026-11-14
 
 ### Added

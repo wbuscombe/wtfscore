@@ -49,6 +49,18 @@ jobs:
           "$RUNNER_TEMP/phantom-runtime/venv/bin/pip" install --only-binary=:all: "$RUNNER_TEMP/phantom-runtime/phantom_docs-0.4.0-py3-none-any.whl"
           "$RUNNER_TEMP/phantom-runtime/venv/bin/python" -m playwright install --with-deps --only-shell chromium
           sudo apt-get install -y tesseract-ocr
+      - name: Check hover frames and calendar footer in Chromium
+        run: |
+          "$RUNNER_TEMP/phantom-runtime/venv/bin/python" tools/capture-showcase.py --bounded polish --work "$RUNNER_TEMP/wtfscore-ui-regressions"
+      - name: Publish the focused UI regression evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: wtfscore-ui-regressions-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/wtfscore-ui-regressions/checks/
+            ${{ runner.temp }}/wtfscore-ui-regressions/unit-proof.json
+            ${{ runner.temp }}/wtfscore-ui-regressions/bounded-result.json
+          if-no-files-found: error
       - name: Verify one hero before the full gallery
         run: |
           "$RUNNER_TEMP/phantom-runtime/venv/bin/python" tools/capture-showcase.py --bounded capture --capture 01-tv-scoreboard --work "$RUNNER_TEMP/wtfscore-hero"

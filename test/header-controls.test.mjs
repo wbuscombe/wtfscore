@@ -34,7 +34,7 @@ test('wrapped header geometry stays above every first-row card on phone and TV',
  for(const [w,h]of[[390,844],[430,932],[960,540],[1920,1080]]){const r=setup(w,h);picker(r,'league');for(const league of ['nfl','ncaaf']){choose(r,'league',league);const g=r.app.layout.frame;assert.ok(g.header.h>=44);for(const p of r.app.layout.placements)assert.ok(p.y>=g.header.y+g.header.h+g.gap-0.01);}}
  for(const w of [360,375,390,430,960,1920]){const anchor={left:w*.3,bottom:100};const width=w*.9;const panel=fitHeaderPanel(anchor,width,{w,h:540});assert.ok(anchor.left+panel.left>=w*.05-.01);assert.ok(anchor.left+panel.left+width<=w*.95+.01);if(w<=430)assert.ok(w*.9-16>=7*44,'seven calendar targets fit after scoped padding');}
  const r=setup(390,844);r.win.scrollY=100;r.app.header.root.getBoundingClientRect=()=>({top:-20});r.app.header.focusNearest(0);same(r.win.scrolls.at(-1)[1],-28,'Up reveals an offscreen header');
- const panel=r.app.header.periodPanel;panel.getBoundingClientRect=()=>({top:50,bottom:150,left:0,right:200});const day=r.app.header.calendar.cells[0].button;day.getBoundingClientRect=()=>({top:170,bottom:214,left:10,right:54});r.app.header.revealInPanel(day);same(panel.scrollTop,70,'calendar focus scrolls its own panel');
+ const panel=r.app.header.periodPanel;const scroll=r.app.header.calendar.scroll;scroll.getBoundingClientRect=()=>({top:50,bottom:150,left:0,right:200});const day=r.app.header.calendar.cells[0].button;day.getBoundingClientRect=()=>({top:170,bottom:214,left:10,right:54});r.app.header.revealInPanel(day);same(scroll.scrollTop,70,'calendar focus scrolls the date grid');same(panel.scrollTop,0,'the footer panel stays still');
 
 });
 

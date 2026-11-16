@@ -134,7 +134,9 @@ export function buildCalendar(doc) {
     tbody.appendChild(tr);
   }
   grid.appendChild(tbody);
-  root.appendChild(grid);
+  const scroll = el(doc, 'div', 'cal-scroll');
+  scroll.appendChild(grid);
+  root.appendChild(scroll);
   const foot = el(doc, 'div', 'cal-foot');
   const today = navButton(doc, 'mbtn cal-today', 'Today', 'today', null);
   const close = navButton(doc, 'mbtn cal-close', 'Close calendar', 'close', null);
@@ -142,7 +144,7 @@ export function buildCalendar(doc) {
   foot.appendChild(close);
   root.appendChild(foot);
   root.appendChild(el(doc, 'p', 'mnote', '• marks a day with games. Arrow keys move by day and week, Page Up and Page Down by month, Escape or Back closes.'));
-  return { root, title, grid, prev, next, today, close, cells };
+  return { root, title, grid, scroll, prev, next, today, close, cells };
 }
 
 const setFlag = (e, cls, on) => {

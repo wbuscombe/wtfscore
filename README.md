@@ -68,14 +68,14 @@ The [CI workflow](https://github.com/wbuscombe/wtfscore/actions/workflows/ci.yml
 
 ## Gallery provenance
 
-The gallery images and their [manifest](docs/screenshots/manifest.json) were captured from pre-publication history that is kept privately. The manifest's source commit, CI run and source-file hash fields refer to that history and do not resolve in this repository. The 24 app files under `public/` that the manifest hashes differ from their captured versions only in comments and one unused string in a developer-only module; neither changes rendering.
+The gallery images and their [manifest](docs/screenshots/manifest.json) were captured from pre-publication history that is kept privately. The manifest's source commit, CI run and source-file hash fields refer to that history and do not resolve in this repository. They preserve the historical v0.1.1 appearance, including the hover and calendar limitations recorded in [validation details](docs/VALIDATION.md#historical-gallery-limitations). Current app code includes later UI fixes; fresh CI artifacts provide their browser evidence.
 
 Changes outside those 24 files, such as tests, tools, CI configuration and documentation, are described in the [changelog](CHANGELOG.md). Each committed image matches the hash recorded for it in the manifest.
 
 ## Current scope
 
 - Games, teams, players, scores, clocks and stats are invented. League names describe the simulated boards. Conference and division memberships are fixture data.
-- Known issues: [pointer hover masks priority colors, and the TV calendar footer requires scrolling](docs/VALIDATION.md#observed-prototype-limitations).
+- Hover keeps priority and scoring frames visible. The calendar scrolls its date grid while keeping Today visible; [focused browser checks](docs/VALIDATION.md#focused-ui-regressions) cover the fixes separately from the historical gallery.
 - Favorites are held in memory per demo screen and reset on reload.
 - There are no logos, accounts, saved profiles or live data providers.
 - The screenshots come from headless Chromium at documented TV and phone sizes. They are layout proxies, not physical device tests.

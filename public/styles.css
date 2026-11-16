@@ -77,8 +77,11 @@ body {
 }
 .header-option[aria-selected="true"] { border-color: var(--line-strong); }
 .header-group-label { font: inherit; color: var(--muted); padding: 8px 10px; margin: 0; }
-.header-period-panel { width: min(400px, 90vw); padding: 4px; }
-.header-period-panel .cal { padding: 2px; }
+.header-period-panel { display: flex; flex-direction: column; width: min(400px, 90vw); padding: 4px; overflow: hidden; }
+.header-phases { flex: 0 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+.header-period-panel .cal { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; margin: 0; padding: 2px; }
+.header-period-panel .cal-head, .header-period-panel .cal-foot, .header-period-panel .mnote { flex: 0 0 auto; }
+.header-period-panel .cal-scroll { min-height: 0; overflow: auto; overscroll-behavior: contain; }
 .header-period-panel .cal-cell { padding: 0; }
 .header-period-panel .cal-grid { min-width: 308px; }
 .header-phase-group { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
@@ -122,7 +125,7 @@ body {
 .card[data-arrangement="stack"] .sec2, .card[data-arrangement="stack"] .sec3 { border-top: 1px solid var(--line-strong); }
 .sec1 { -webkit-user-select: none; user-select: none; touch-action: manipulation; }
 .card.can-open .sec1 { cursor: pointer; }
-.card.can-open:hover::after { border-color: var(--line-strong); }
+.card.can-open:not(.prio):not(.cue-strong):not(:focus-visible):hover::after { border-color: var(--line-strong); }
 .card.open::after { border-color: var(--muted); }
 .card:focus-visible::after { border-color: var(--live); outline: 1px solid var(--live); outline-offset: -2px; }
 
