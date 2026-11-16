@@ -14,6 +14,8 @@ All notable changes to this project are documented here. This file follows Keep 
 
 ### Fixed
 
+- The calendar keeps more of the month in view on smaller screens, and reopens at the top of the month whenever the chosen day fits.
+
 - Pointer hover preserves football priority borders and green scoring-event frames, including keyboard focus and text cues.
 - The calendar date grid scrolls independently so Today stays visible and usable without scrolling the outer panel.
 - The calendar panel is no longer cut off when the board is shorter than the screen.

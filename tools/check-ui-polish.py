@@ -64,6 +64,12 @@ async def calendar(browser, output, width, height):
     await page.locator('#header-period-panel .cal-today').click()
     assert await page.locator('#header-period-panel').is_hidden()
     await page.locator('#header-period').click()
+    reopen = await page.evaluate("""() => {
+      const s=document.querySelector('#header-period-panel .cal-scroll');
+      const r=document.activeElement.getBoundingClientRect(),b=s.getBoundingClientRect();
+      return {gridScroll:s.scrollTop,fits:r.bottom+s.scrollTop<=b.bottom-6};
+    }""")
+    assert not reopen['fits'] or reopen['gridScroll'] == 0, (width,height,reopen)
     await page.screenshot(path=str(output/f'calendar-{width}x{height}.png'))
     for _ in range(5):
         await page.keyboard.press('Shift+Tab')
@@ -79,7 +85,7 @@ async def calendar(browser, output, width, height):
     assert phase['inPhases'] and phase['visible'] and phase['hit'], (width,height,phase)
     assert not errors, errors
     await page.close()
-    return {'viewport':[width,height],'text_size':'largest','before':before,'after_keyboard':moved,'focused_day':focused,'keyboard_today':True,'pointer_today':True,'escape_focus_return':True,'phase_keyboard':phase}
+    return {'viewport':[width,height],'text_size':'largest','before':before,'after_keyboard':moved,'focused_day':focused,'keyboard_today':True,'pointer_today':True,'escape_focus_return':True,'phase_keyboard':phase,'reopen':reopen}
 
 async def frames(browser, output):
     page = await browser.new_page(viewport={'width':1920,'height':1080})

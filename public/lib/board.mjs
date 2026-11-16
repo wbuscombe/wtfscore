@@ -738,6 +738,7 @@ export function mountBoard({ win, doc, root, week = null, now = readClock(win), 
     drawCalendar();
     header.calendar.root.hidden = false;
     header.showDaily();
+    header.calendar.scroll.scrollTop = 0;
     focusCalendarDay();
     return true;
   }
