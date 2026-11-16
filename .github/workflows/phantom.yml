@@ -8,6 +8,7 @@ on:
       - 'server.mjs'
       - '.phantom.yml'
       - 'tools/capture-showcase.py'
+      - 'tools/check-ui-polish.py'
       - 'tools/verify-showcase.py'
       - '.github/workflows/phantom.yml'
   workflow_dispatch:
@@ -86,7 +87,7 @@ jobs:
           import os,json
           from pathlib import Path
           root=Path(os.environ['RUNNER_TEMP'])
-          for folder in ['wtfscore-hero','wtfscore-gallery','wtfscore-verify']:
+          for folder in ['wtfscore-ui-regressions','wtfscore-hero','wtfscore-gallery','wtfscore-verify']:
               for name in ['unit-proof.json','bounded-result.json','kernel-exit.json','capture/result.json']:
                   path=root/folder/name
                   if path.is_file():

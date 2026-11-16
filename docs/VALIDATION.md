@@ -26,10 +26,10 @@ The committed gallery preserves the historical v0.1.1 app. Current app code incl
 
 In historical gallery shot 10, November 15 and the month title are visible while the Today footer sits below the visible area. Pointer hover replaces a football priority border with gray in shots 4 and 15. The text cue remains visible. These captures remain unchanged as a record of v0.1.1; current app code fixes those two behaviors.
 
-### Focused UI regressions
+Boards and long menus scroll, so an image can include part of the next card or list item. The phone inline view preserves the app's own ellipsis for long play text. No app UI pixels were retouched.
+
+## Focused UI regressions
 
 The Phantom workflow also runs `tools/check-ui-polish.py` in its bounded Linux sandbox. Five cases use the real card renderer with explicit simulated inputs: red, orange and yellow football priorities combined with a touchdown, a green touchdown without priority, and ordinary hover. Chromium checks border colors, text cues and keyboard focus, and captures each case.
 
 Calendar checks use real controls at 960x540, 1280x720, 1920x1080 and 390x844, all at the largest text setting. They check Today bounds and pointer hit testing, keyboard movement within the scrolling grid, a stationary footer and outer panel, Tab/Enter activation, Escape and focus return. The `wtfscore-ui-regressions` artifact contains the screenshots and measured results. These supplement the 269 behavioral and hygiene tests; they are browser viewport proxies, not physical-device acceptance.
-
-Boards and long menus scroll, so an image can include part of the next card or list item. The phone inline view preserves the app's own ellipsis for long play text. No app UI pixels were retouched.

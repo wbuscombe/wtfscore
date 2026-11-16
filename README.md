@@ -68,9 +68,9 @@ The [CI workflow](https://github.com/wbuscombe/wtfscore/actions/workflows/ci.yml
 
 ## Gallery provenance
 
-The gallery images and their [manifest](docs/screenshots/manifest.json) were captured from pre-publication history that is kept privately. The manifest's source commit, CI run and source-file hash fields refer to that history and do not resolve in this repository. They preserve the historical v0.1.1 appearance, including the hover and calendar limitations recorded in [validation details](docs/VALIDATION.md#historical-gallery-limitations). Current app code includes later UI fixes; fresh CI artifacts provide their browser evidence.
+The gallery images and their [manifest](docs/screenshots/manifest.json) were captured from pre-publication history that is kept privately. The manifest's source commit, CI run and source-file hash fields refer to that history and do not resolve in this repository. The images preserve the historical v0.1.1 appearance, including the hover and calendar limitations recorded in [validation details](docs/VALIDATION.md#historical-gallery-limitations). Current app code includes later UI fixes; fresh CI artifacts provide their browser evidence.
 
-Changes outside those 24 files, such as tests, tools, CI configuration and documentation, are described in the [changelog](CHANGELOG.md). Each committed image matches the hash recorded for it in the manifest.
+Later changes to the app, tests, tools, CI configuration and documentation are described in the [changelog](CHANGELOG.md). Each committed image matches the hash recorded for it in the manifest.
 
 ## Current scope
 

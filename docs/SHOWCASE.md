@@ -2,7 +2,7 @@
 
 All games, teams, players and statistics are simulated. The browser clock is fixed at Sunday, November 15, 2026, 3:50 PM Central. TV captures use 960 × 540 CSS pixels at 2×. Phone captures use 390 × 844 at 3×. These are headless Chromium layout proxies.
 
-These images were captured from pre-publication history that is kept privately; see [capture provenance](VALIDATION.md#capture-provenance).
+These images were captured from pre-publication history that is kept privately; see [capture provenance](VALIDATION.md#capture-provenance). They show the v0.1.1 app. Current code fixes the gray hover border in shots 4 and 15 and the calendar footer in shot 10; see [focused UI regressions](VALIDATION.md#focused-ui-regressions).
 
 ## 1. NFL week board with a favorite team
 
