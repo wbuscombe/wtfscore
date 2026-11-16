@@ -25,6 +25,7 @@ RECTS = """() => {
 }"""
 
 async def calendar(browser, output, width, height):
+    print(json.dumps({'calendar_case':[width,height]}), flush=True)
     page = await browser.new_page(viewport={'width':width,'height':height})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
@@ -89,6 +90,7 @@ async def frames(browser, output):
     }""")
     results = []
     for name in ['red','orange','yellow','green','ordinary']:
+        print(json.dumps({'frame_case':name}), flush=True)
         card = page.locator('#frame-'+name)
         await page.mouse.move(1900,1000)
         before = await card.evaluate("e=>({border:getComputedStyle(e,'::after').borderColor,text:e.textContent})")

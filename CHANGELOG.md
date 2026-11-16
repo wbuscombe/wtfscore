@@ -16,6 +16,7 @@ All notable changes to this project are documented here. This file follows Keep 
 
 - Pointer hover preserves football priority borders and green scoring-event frames, including keyboard focus and text cues.
 - The calendar date grid scrolls independently so Today stays visible and usable without scrolling the outer panel.
+- The calendar panel is no longer cut off when the board is shorter than the screen.
 
 ## [0.1.1] - 2026-11-14
 
